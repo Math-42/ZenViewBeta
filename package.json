@@ -1,8 +1,11 @@
 {
     "name": "zenview",
-    "version": "1.0",
-    "main": "main.js",
+    "version": "1.0.0",
+    "main": "scripts/main.js",
     "devDependencies": {
         "electron": "^9.0.3"
+    },
+    "scripts": {
+        "start": "electron ."
     }
 }
