@@ -5,19 +5,34 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const path = require("path")
 const url = require("url")
+const ipc = electron.ipcMain
 
 let initialWindow
+let mainWindow
+
+//parametros iniciais da janela inicial
 let initialWindowparams = {
     frame: false,
-    titleBarStyle: 'hiddenInset',
+    titleBarStyle: 'hidden',
     width: 539,
     height: 170,
+    resizable: false,
     path: '../interface/initialWindow/initialWindow.html',
     openDevTools: false
 }
-
-function createWindow(window,params) {
-    window = new BrowserWindow(params)
+//parametros inicias da janela principal
+let mainWindowparams = {
+    title: 'ZenView',
+    path: '../interface/mainWindow/mainWindow.html',
+    show: false,
+    webPreferences: {
+        nodeIntegration: true
+    },
+    openDevTools: true
+}
+//cria uma nova janela a partir dos parametros dados
+function createWindow(params) {
+    let window = new BrowserWindow(params)
     window.loadURL(url.format({
         pathname: path.join(__dirname,params.path),
         protocol: 'file',
@@ -29,18 +44,31 @@ function createWindow(window,params) {
     window.on('closed',()=>{
         window = null
     })
+    return window
 }
+//event listener que espera o app ser criado para criar as janelas
+app.on('ready',()=>{
+    initialWindow = createWindow(initialWindowparams)
+    mainWindow = createWindow(mainWindowparams)
+})
 
-app.on('ready',()=>{createWindow(initialWindow,initialWindowparams)})
-
+//encerra o programa se todas as janelas forem fechadas
 app.on('window-all-closed',()=>{
     if(process.platform !== 'darwin'){
         app.quit()
     }
 })
 
+//caso a janela nao tenha sido criada força sua criação
 app.on('activate',()=>{
-    if(window === null){
-        createWindow()
+    if(initialWindow === null){
+        createWindow(initialWindow)
+        createWindow(mainWindow)
     }
+})
+
+//listerner que avisa que o load da janela principal terminou
+ipc.on('mainLoadCompleto',function(event,data){
+    initialWindow.close()
+    setTimeout(()=>{mainWindow.show()},250) 
 })
