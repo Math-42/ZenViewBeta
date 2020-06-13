@@ -6,22 +6,28 @@ const BrowserWindow = electron.BrowserWindow
 const path = require("path")
 const url = require("url")
 
-let window
+let initialWindow
+let initialWindowparams = {
+    frame: false,
+    titleBarStyle: 'hiddenInset',
+    width: 539,
+    height: 170,
+    path: '../interface/initialWindow/initialWindow.html'
+}
 
-function createWindow() {
-    window = new BrowserWindow()
+function createWindow(window,params) {
+    window = new BrowserWindow(params)
     window.loadURL(url.format({
-        pathname: path.join(__dirname,'index.html'),
+        pathname: path.join(__dirname,params.path),
         protocol: 'file',
-        slashes: true
+        slashes: true,
     }))
-
     window.on('closed',()=>{
-        win = null
+        window = null
     })
 }
 
-app.on('ready',createWindow)
+app.on('ready',()=>{createWindow(initialWindow,initialWindowparams)})
 
 app.on('window-all-closed',()=>{
     if(process.platform !== 'darwin'){
