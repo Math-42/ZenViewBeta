@@ -1,0 +1,50 @@
+#side_menu {
+    height: 100%;
+    width: 281px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #1c1e23;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.1s;
+}
+
+#side_menu button,a {
+    padding: 8px 8px 8px 32px;
+    outline: none;
+    box-shadow: none;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 8px;
+    border: 1px lightgray ;
+    background-color: #1c1e23;
+    text-decoration: none;
+    font-size: 25px;
+    color: #929191;
+    display: block;
+    transition: 0.1s;
+}
+
+#side_menu button{
+    font-size: 17px;
+    width: 220px;
+    height: 45px;
+    border: 1px solid #2e3034;
+}
+
+#side_menu button:hover {
+    background-color: #262f3f;
+    border: 1px solid #2e394d;
+    cursor: pointer;
+}
+
+#side_menu .closebtn {
+    position: absolute;
+    top: 0;
+    right: 7px;
+    font-size: 36px;
+    margin-top: 2px;
+    margin-left: 0px;
+}

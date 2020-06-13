@@ -18,3 +18,5 @@ function loadPage(){
         })
     },duracao)
 }
+
+window.onload = loadPage
