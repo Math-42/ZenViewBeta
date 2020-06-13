@@ -1,0 +1,55 @@
+[
+    {
+        "name": "Creat a new data view",
+        "onclick": "openPopup('new')",
+        "context": "all-show"
+    },
+    {
+        "context": "open_show",
+        "onclick": "openPopup('start')",
+        "name": "Start read"
+    },
+    {
+        "context": "open_show",
+        "name": "Stop read"
+    },
+    {
+        "context": "all-show",
+        "onclick": "openPopup('open');showViews('open_data_views_saved','open')",
+        "name": "Open a data view"
+    },
+    {
+        "context": "all-show",
+        "onclick": "openPopup('import')",
+        "name": "Import a new data view"
+    },
+    {
+        "context": "all-show",
+        "onclick": "openPopup('new')",
+        "name": "Creat a new data view"
+    },
+    {
+        "context": "all-show",
+        "onclick": "openPopup('edit');showViews('edit_data_views_saved','edit')",
+        "name": "Edit a data view"
+    },
+    {
+        "context": "edit_show",
+        "onclick": "openPopup('input');openInputs()",
+        "name": "Edit inputs"
+    },
+    {
+        "context": "edit_show",
+        "onclick": "openPopup('blocks');showBlocks('open_block_saved')",
+        "name": "Add a block"
+    },
+    {
+        "context": "edit_show",
+        "name": "Finish"
+    },
+    {
+        "context": "edit_show",
+        "onclick": "deleteDataView()",
+        "name": "Delete"
+    }
+]
