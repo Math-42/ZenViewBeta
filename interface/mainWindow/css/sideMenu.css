@@ -48,3 +48,8 @@
     margin-top: 2px;
     margin-left: 0px;
 }
+
+@media screen and (max-height: 450px) {
+    #side_menu {padding-top: 15px;}
+    #side_menu a {font-size: 18px;}
+}

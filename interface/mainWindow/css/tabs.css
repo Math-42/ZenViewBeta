@@ -1,0 +1,35 @@
+div#tabs{
+    background-color: rgb(168, 168, 168);
+}
+
+div.tab_manage{
+    width: 100%;
+    height: 100%;
+}
+
+.etabs-tab{
+    border-bottom: none ;
+}
+
+.etabs-buttons button{
+    background-color:  rgb(168, 168, 168);
+    margin-top: 0px;
+    margin-left: 0px;
+    height: 32px;
+    width: 40px;
+    text-align: center;
+}
+
+.etabs-buttons button:hover{
+    color: black;
+    background-color:  rgb(211, 210, 210);
+}
+
+.etabs-views{
+    background-color: rgb(240, 240, 240);
+    border-top: none;
+}
+
+.etabs-tab.active {
+  background:  rgb(240, 240, 240);
+}

@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../node_modules/electron-tabs/electron-tabs.css">
     <link rel="stylesheet" href="css/mainWindow.css"/>
+    <link rel="stylesheet" href="css/tabs.css"/>
     <link rel="stylesheet" href="css/sideMenu.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
     <script language="JavaScript" src="../../scripts/mainWindow.js"></script>
     <script language="JavaScript" src="../../scripts/sideMenu.js"></script>
+    <script language="JavaScript" src="../../scripts/tabs.js"></script>
+    <script language="JavaScript" src="../../scripts/onload.js"></script>
 </head>
 <body>
     <div id="side_menu" >
@@ -15,7 +20,13 @@
         </div>
     </div>
     <div id="main">
-
+        <div class="tab_manage">
+            <div class="etabs-tabgroup" id="tabs">
+                <div class="etabs-tabs"></div>
+                <div class="etabs-buttons"></div>
+            </div>
+            <div class="etabs-views"></div>
+        </div>
     </div>
 </body>
 </html>

@@ -22,12 +22,12 @@ function loadButtons(){
                         >${button.name}</button>`
     });
     document.getElementById("side_tab_menu").innerHTML = htmlButtons
-    console.log(htmlButtons)
 }
 
 function loadPage(){
     var duracao = Date.now()//pega o horario atual
     loadButtons()
+    console.log("running....")
     duracao = Date.now() - duracao//pega a duracao do load
     duracao = (duracao > 3000)? 0: 3000-duracao //testa se foram mais de 3 segundos
     setTimeout(()=>{//caso n tenha sido espera o gif terminar para chamar a janela principal
@@ -37,4 +37,6 @@ function loadPage(){
     },duracao)
 }
 
-window.onload = loadPage
+mainWindowOnLoad = () => {
+    loadPage()
+}

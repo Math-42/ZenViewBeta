@@ -1,0 +1,5 @@
+#main {
+    margin-left: 280px;
+    transition: margin-left .1s;
+    padding: 0px;
+}

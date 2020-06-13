@@ -27,7 +27,8 @@ let mainWindowparams = {
     path: '../interface/mainWindow/mainWindow.html',
     show: false,
     webPreferences: {
-        nodeIntegration: true
+        nodeIntegration: true,
+        webviewTag: true
     },
     openDevTools: true
 }
