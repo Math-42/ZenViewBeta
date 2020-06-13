@@ -12,7 +12,8 @@ let initialWindowparams = {
     titleBarStyle: 'hiddenInset',
     width: 539,
     height: 170,
-    path: '../interface/initialWindow/initialWindow.html'
+    path: '../interface/initialWindow/initialWindow.html',
+    openDevTools: false
 }
 
 function createWindow(window,params) {
@@ -22,6 +23,9 @@ function createWindow(window,params) {
         protocol: 'file',
         slashes: true,
     }))
+    if(params.openDevTools){
+        window.openDevTools()
+    }
     window.on('closed',()=>{
         window = null
     })
