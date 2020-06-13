@@ -17,6 +17,7 @@ let initialWindowparams = {
     width: 539,
     height: 170,
     resizable: false,
+    show: false,
     path: '../interface/initialWindow/initialWindow.html',
     openDevTools: false
 }
@@ -50,6 +51,10 @@ function createWindow(params) {
 app.on('ready',()=>{
     initialWindow = createWindow(initialWindowparams)
     mainWindow = createWindow(mainWindowparams)
+    //apenas mostrara a janela quando estiver pronta
+    initialWindow.once('ready-to-show',()=>{
+        initialWindow.show();
+    })
 })
 
 //encerra o programa se todas as janelas forem fechadas
@@ -68,7 +73,7 @@ app.on('activate',()=>{
 })
 
 //listerner que avisa que o load da janela principal terminou
-ipc.on('mainLoadCompleto',function(event,data){
+ipc.on('mainLoadCompleto',() =>{
     initialWindow.close()
     setTimeout(()=>{mainWindow.show()},250) 
 })
