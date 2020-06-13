@@ -7,5 +7,8 @@
     },
     "scripts": {
         "start": "electron ."
+    },
+    "dependencies": {
+        "electron-tabs": "^0.15.0"
     }
 }
