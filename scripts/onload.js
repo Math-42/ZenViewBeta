@@ -1,4 +1,5 @@
+
 window.onload = () =>{
-    tabsOnLoad()
-    mainWindowOnLoad()
+    mainwindow.addOnLoadFunction(tabsOnLoad)
+    mainwindow.loadStorageFunctions();
 }
