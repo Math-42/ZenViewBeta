@@ -34,11 +34,13 @@ function createNewTab(name,html){
 //funcao para abrir novas abas
 function openNewTab(name,stats){
     let alreadyOpen;
+    
     tabGroup.eachTab((tab)=>{//testa se já está aberto
         if(tab.title === name){
             alreadyOpen = true;
         }
     })
+
     if(!alreadyOpen){
         let newTab = tabGroup.getActiveTab();//pega a aba atual
         newTab.src = "dataViews/"+name+"/"+name+".html";//abre o html da nova aba
