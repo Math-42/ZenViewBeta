@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="css/tabs.css"/>
     <link rel="stylesheet" href="css/sideMenu.css"/>
     <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="../popup/popup.css"/>
     <script language="JavaScript" src="../../scripts/mainWindow.js"></script>
     <script language="JavaScript" src="../../scripts/sideMenu.js"></script>
     <script language="JavaScript" src="../../scripts/tabs.js"></script>
+    <script language="JavaScript" src="../../scripts/popup.js"></script>
     <script language="JavaScript" src="../../scripts/onload.js"></script>
 </head>
 <body>
@@ -26,6 +28,33 @@
                 <div class="etabs-buttons"></div>
             </div>
             <div class="etabs-views"></div>
+        </div>
+    </div>
+    <div id="popup_background">
+        <div id="popup_menu">
+            <div class="menu_title">
+                <h3>Manager</h3>
+                <a onclick="closePopup()">&times;</a>
+            </div>
+            <div class="optionsContainer">
+                <div id="optionTab">
+                    <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
+                    <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+                    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+                    <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+                    <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+                    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+                    <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+                    <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+                    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+                </div>
+                <div id="tabcontentContainer">
+                    <div id="London" class="tabcontent">
+                        <h3>London</h3>
+                        <p>London is the capital city of England.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

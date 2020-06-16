@@ -1,0 +1,44 @@
+[
+    {
+        "context": "open_show tablinks",
+        "onclick": "openMenu(this.id,'start')",
+        "id": "start_tablink",
+        "name": "Start read"
+    },
+    {
+        "context": "tablinks",
+        "onclick": "openMenu(this.id,'open');showViews('open_data_views_saved')",
+        "id": "open_tablink",
+        "name": "Data views"
+    },
+    {
+        "context": "tablinks",
+        "onclick": "openMenu(this.id,'import')",
+        "id": "import_tablink",
+        "name": "Import"
+    },
+    {
+        "context": "tablinks",
+        "onclick": "openMenu(this.id,'new')",
+        "id": "new_tablink",
+        "name": "New Data view"
+    },
+    {
+        "context": "tablinks",
+        "onclick": "openMenu(this.id,'edit');showViews('edit_data_views_saved','edit')",
+        "id": "edit_tablink",
+        "name": "Edit Data view"
+    },
+    {
+        "context": "edit_show tablinks ",
+        "onclick": "openMenu(this.id,'input');openInputs()",
+        "id": "input_tablink",
+        "name": "Inputs"
+    },
+    {
+        "context": "edit_show tablinks ",
+        "onclick": "openMenu(this.id,'blocks');showBlocks('open_block_saved')",
+        "id": "blocks_tablink",
+        "name": "Blocks"
+    }
+]
