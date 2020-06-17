@@ -7,12 +7,13 @@ const menus = require('../../scripts/imports.js')
 const classes = require('../../scripts/classes.js')
 const SideMenu = require('../../scripts/sideMenu.js')
 const popUpMenu = require('../../scripts/popup.js')
+const Tabs = require('../../scripts/tabs.js')
 
 class MainWindow{
     constructor(){
         this.buttons = {};
         this.onLoadFunctions = [];
-        this.tabs = []
+        this.tabs = new Tabs();
         this.sideMenu = new SideMenu();
         this.popUpMenu = new popUpMenu();
     }
@@ -26,8 +27,11 @@ class MainWindow{
         window.addEventListener('ClosePopupMenu',(evt)=>{
             this.popUpMenu.closePopup();
         })
-         window.addEventListener('OpenPopupMenu',(evt)=>{
+        window.addEventListener('OpenPopupMenu',(evt)=>{
             this.popUpMenu.openPopup(evt.detail.menuName);
+        })
+        window.addEventListener('LoadNewTab',(evt)=>{
+            this.tabs.openNewTab(evt.detail.name,evt.detail.context);
         })
     }
     loadStorageFunctions(){
@@ -111,3 +115,12 @@ class MainWindow{
 }
 
 const mainwindow = new MainWindow()
+
+window.onload = () =>{
+
+    ipc.on('mainLoadcompleto',()=>{
+        console.log("teste");
+    })
+    mainwindow.loadStorageFunctions();
+    mainwindow.tabs.tabsOnLoad()
+}
