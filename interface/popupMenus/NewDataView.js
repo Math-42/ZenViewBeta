@@ -105,6 +105,7 @@ module.exports = class NewDataView{
             fs.mkdirSync(`dataViews/${this.name.value}`);
             fs.writeFileSync(`dataViews/${this.name.value}/${this.name.value}.json`,JSON.stringify(dataViewA,null,"\t"));
             fs.writeFileSync(`dataViews/${this.name.value}/${this.name.value}.html`,this.newHTML(this.name.value));
+            mainwindow.dispatchEvent('LoadNewTab',{"name":this.name.value,"context": "edit_show"});
             this.name.value = "";
             this.inputs.value = "";
             this.description.value = "";
