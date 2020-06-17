@@ -24,7 +24,7 @@
         "name": "Stop read"
     },
     {
-        "context": "all-show",
+        "context": "all_show",
         "onclick": "openPopup('open');showViews('open_data_views_saved','open')",
         "events": [
             {
@@ -37,7 +37,7 @@
         "name": "Open a data view"
     },
     {
-        "context": "all-show",
+        "context": "all_show",
         "onclick": "openPopup('import')",
         "events": [
             {
@@ -50,7 +50,7 @@
         "name": "Import a new data view"
     },
     {
-        "context": "all-show",
+        "context": "all_show",
         "events": [
             {
                 "name": "OpenPopupMenu",
@@ -62,7 +62,7 @@
         "name": "Creat a new data view"
     },
     {
-        "context": "all-show",
+        "context": "all_show",
         "onclick": "openPopup('edit');showViews('edit_data_views_saved','edit')",
         "events": [
             {

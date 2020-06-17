@@ -1,6 +1,6 @@
 [
     {
-        "context": "open_show tablinks",
+        "context": "start_show tablinks",
         "events":[
             {
                 "name":"OpenPopupMenu",
@@ -13,7 +13,7 @@
         "name": "Start read"
     },
     {
-        "context": "tablinks",
+        "context": "all_show tablinks",
         "events":[
             {
                 "name":"OpenPopupMenu",
@@ -26,7 +26,7 @@
         "name": "Data views"
     },
     {
-        "context": "tablinks",
+        "context": "all_show tablinks",
         "events":[
             {
                 "name":"OpenPopupMenu",
@@ -39,7 +39,7 @@
         "name": "Import"
     },
     {
-        "context": "tablinks",
+        "context": "all_show tablinks",
         "events":[
             {
                 "name":"OpenPopupMenu",
@@ -52,7 +52,7 @@
         "name": "New Data view"
     },
     {
-        "context": "tablinks",
+        "context": "all_show tablinks",
         "events":[
             {
                 "name":"OpenPopupMenu",
