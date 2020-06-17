@@ -1,43 +1,92 @@
 [
     {
         "context": "open_show tablinks",
-        "onclick": "openMenu(this.id,'start')",
+        "events":[
+            {
+                "name":"OpenPopupMenu",
+                "details":{
+                    "menuName":"start"
+                }
+            }
+        ],
         "id": "start_tablink",
         "name": "Start read"
     },
     {
         "context": "tablinks",
-        "onclick": "openMenu(this.id,'open');showViews('open_data_views_saved')",
-        "id": "open_tablink",
+        "events":[
+            {
+                "name":"OpenPopupMenu",
+                "details":{
+                    "menuName":"DataViewList"
+                }
+            }
+        ],
+        "id": "DataViewList_tablink",
         "name": "Data views"
     },
     {
         "context": "tablinks",
-        "onclick": "openMenu(this.id,'import')",
+        "events":[
+            {
+                "name":"OpenPopupMenu",
+                "details":{
+                    "menuName":"import"
+                }
+            }
+        ],
         "id": "import_tablink",
         "name": "Import"
     },
     {
         "context": "tablinks",
-        "onclick": "openMenu(this.id,'new')",
-        "id": "new_tablink",
+        "events":[
+            {
+                "name":"OpenPopupMenu",
+                "details":{
+                    "menuName":"NewDataView"
+                }
+            }
+        ],
+        "id": "NewDataView_tablink",
         "name": "New Data view"
     },
     {
         "context": "tablinks",
-        "onclick": "openMenu(this.id,'edit');showViews('edit_data_views_saved','edit')",
+        "events":[
+            {
+                "name":"OpenPopupMenu",
+                "details":{
+                    "menuName":"edit"
+                }
+            }
+        ],
         "id": "edit_tablink",
         "name": "Edit Data view"
     },
     {
         "context": "edit_show tablinks ",
-        "onclick": "openMenu(this.id,'input');openInputs()",
+        "events":[
+            {
+                "name":"OpenPopupMenu",
+                "details":{
+                    "menuName":"input"
+                }
+            }
+        ],
         "id": "input_tablink",
         "name": "Inputs"
     },
     {
         "context": "edit_show tablinks ",
-        "onclick": "openMenu(this.id,'blocks');showBlocks('open_block_saved')",
+        "events":[
+            {
+                "name":"OpenPopupMenu",
+                "details":{
+                    "menuName":"blocks"
+                }
+            }
+        ],
         "id": "blocks_tablink",
         "name": "Blocks"
     }
