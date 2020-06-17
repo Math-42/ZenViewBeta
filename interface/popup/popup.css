@@ -63,18 +63,20 @@ div.optionsContainer{
 }
 
 #optionTab {
+  color: lightgray;
   float: left;
   flex-grow: 1;
   background-color:  rgb(57, 65, 73);
   overflow-y: auto;
-  width: 30%;
+  width: 22%;
 }
 
 #optionTab button {
+  font-size: large;
+  color: lightgray;
   display: block;
   flex-grow: 1;
   background-color: inherit;
-  color: black;
   padding: 22px 16px;
   width: 100%;
   border: none;
@@ -93,10 +95,11 @@ div.optionsContainer{
 }
 
 #tabcontentContainer{
-    background-color:  #333d49;
+  color: lightgray;
+  background-color:  #333d49;
   float: left;
   flex-grow: 1;
-  width: 70%;
+  width: 78%;
   border-left: none;
   overflow-y: auto;
   border-left: 1px solid black;
