@@ -1,4 +1,5 @@
 [
     "NewDataView",
-    "DataViewsList"
+    "DataViewsList",
+    "DataViewsEdit"
 ]

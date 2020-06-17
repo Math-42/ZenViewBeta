@@ -112,3 +112,58 @@
 #SavedDataViewsList button:hover {
     background-color: #5a6470;
 }
+
+/*
+    Estilo do menu de edição dos dataViews
+*/
+
+#DataViewsEdit{
+    padding: 0px;
+    flex-direction: column;
+    width: 100%;
+    overflow: none;
+}
+
+#DataViewsEditSearchBar {
+    box-sizing: border-box;
+    font-size: 18px;
+    padding: 0px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    text-align: right;
+    border: none;
+    outline: none;
+    width: 100%;
+    box-shadow: none;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+#SavedDataViewsEditList {
+    overflow-y: auto;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+#SavedDataViewsEditList button {
+    padding: 8px 8px 8px 32px;
+    outline: none;
+    box-shadow: none;
+    text-align: right;
+    text-decoration: none;
+    margin: 0px;
+    font-size: 25px;
+    border: none;
+    background-color: #333d49;
+    color: lightgray;
+    display: block;
+    transition: 0.1s;
+}
+
+#SavedDataViewsEditList button:hover {
+    background-color: #5a6470;
+}

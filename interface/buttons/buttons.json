@@ -67,7 +67,7 @@
             {
                 "name": "OpenPopupMenu",
                 "details": {
-                    "menuName": "DataViewEdit"
+                    "menuName": "DataViewsEdit"
                 }
             }
         ],

@@ -57,11 +57,11 @@
             {
                 "name":"OpenPopupMenu",
                 "details":{
-                    "menuName":"DataViewEdit"
+                    "menuName":"DataViewsEdit"
                 }
             }
         ],
-        "id": "DataViewEdit_tablink",
+        "id": "DataViewsEdit_tablink",
         "name": "Edit Data view"
     },
     {
