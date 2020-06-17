@@ -5,12 +5,10 @@ module.exports = class popUpMenu{
   }
 
   setTablinks(tabLinks){
-    console.log("ok")
     this.tablinks = tabLinks;
   }
 
   setMenus(menus){
-    console.log("ok")
     this.menus = menus
   }
 
@@ -24,14 +22,12 @@ module.exports = class popUpMenu{
   }
 
   loadMenuFunction(menuName){
-    console.log(this.menus[menuName].onLoadFunction)
     if(this.menus[menuName].onLoadFunction !== undefined){
       this.menus[menuName].onLoadFunction()
     }
   }
 
   openMenu(id, menuName){
-    console.log(this.menus)
     let tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (let i = 0; i < tabcontent.length; i++) {
