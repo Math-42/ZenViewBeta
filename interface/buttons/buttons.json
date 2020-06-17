@@ -5,7 +5,7 @@
             {
                 "name": "OpenPopupMenu",
                 "details": {
-                    "menuName": "start"
+                    "menuName": "Start"
                 }
             }
         ],
@@ -15,9 +15,9 @@
         "context": "start_show",
         "events": [
             {
-                "name": "OpenPopupMenu",
+                "name": "",
                 "details": {
-                    "menuName": "NewDataView"
+                    
                 }
             }
         ],
@@ -25,12 +25,11 @@
     },
     {
         "context": "all_show",
-        "onclick": "openPopup('open');showViews('open_data_views_saved','open')",
         "events": [
             {
                 "name": "OpenPopupMenu",
                 "details": {
-                    "menuName": "NewDataView"
+                    "menuName": "DataViewsList"
                 }
             }
         ],
@@ -43,7 +42,7 @@
             {
                 "name": "OpenPopupMenu",
                 "details": {
-                    "menuName": "NewDataView"
+                    "menuName": "Import"
                 }
             }
         ],
@@ -68,7 +67,7 @@
             {
                 "name": "OpenPopupMenu",
                 "details": {
-                    "menuName": "NewDataView"
+                    "menuName": "DataViewEdit"
                 }
             }
         ],
@@ -76,12 +75,11 @@
     },
     {
         "context": "edit_show",
-        "onclick": "openPopup('input');openInputs()",
         "events": [
             {
                 "name": "OpenPopupMenu",
                 "details": {
-                    "menuName": "NewDataView"
+                    "menuName": "Inputs"
                 }
             }
         ],
@@ -89,12 +87,11 @@
     },
     {
         "context": "edit_show",
-        "onclick": "openPopup('blocks');showBlocks('open_block_saved')",
         "events": [
             {
                 "name": "OpenPopupMenu",
                 "details": {
-                    "menuName": "NewDataView"
+                    "menuName": "Blocks"
                 }
             }
         ],
@@ -104,9 +101,8 @@
         "context": "edit_show",
         "events": [
             {
-                "name": "OpenPopupMenu",
+                "name": "",
                 "details": {
-                    "menuName": "NewDataView"
                 }
             }
         ],
@@ -117,9 +113,8 @@
         "onclick": "deleteDataView()",
         "events": [
             {
-                "name": "OpenPopupMenu",
+                "name": "",
                 "details": {
-                    "menuName": "NewDataView"
                 }
             }
         ],

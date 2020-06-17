@@ -5,11 +5,11 @@
             {
                 "name":"OpenPopupMenu",
                 "details":{
-                    "menuName":"start"
+                    "menuName":"Start"
                 }
             }
         ],
-        "id": "start_tablink",
+        "id": "Start_tablink",
         "name": "Start read"
     },
     {
@@ -18,11 +18,11 @@
             {
                 "name":"OpenPopupMenu",
                 "details":{
-                    "menuName":"DataViewList"
+                    "menuName":"DataViewsList"
                 }
             }
         ],
-        "id": "DataViewList_tablink",
+        "id": "DataViewsList_tablink",
         "name": "Data views"
     },
     {
@@ -31,11 +31,11 @@
             {
                 "name":"OpenPopupMenu",
                 "details":{
-                    "menuName":"import"
+                    "menuName":"Import"
                 }
             }
         ],
-        "id": "import_tablink",
+        "id": "Import_tablink",
         "name": "Import"
     },
     {
@@ -57,11 +57,11 @@
             {
                 "name":"OpenPopupMenu",
                 "details":{
-                    "menuName":"edit"
+                    "menuName":"DataViewEdit"
                 }
             }
         ],
-        "id": "edit_tablink",
+        "id": "DataViewEdit_tablink",
         "name": "Edit Data view"
     },
     {
@@ -70,11 +70,11 @@
             {
                 "name":"OpenPopupMenu",
                 "details":{
-                    "menuName":"input"
+                    "menuName":"Inputs"
                 }
             }
         ],
-        "id": "input_tablink",
+        "id": "InputEdit_tablink",
         "name": "Inputs"
     },
     {
@@ -83,11 +83,11 @@
             {
                 "name":"OpenPopupMenu",
                 "details":{
-                    "menuName":"blocks"
+                    "menuName":"Blocks"
                 }
             }
         ],
-        "id": "blocks_tablink",
+        "id": "Blocks_tablink",
         "name": "Blocks"
     }
 ]
