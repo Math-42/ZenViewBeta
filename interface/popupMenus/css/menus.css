@@ -1,0 +1,56 @@
+
+#NewDataView{
+    width: 93%;
+}
+
+
+#init_view_form {
+    padding-top: 10px;
+    float: left;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+#init_view_form input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical
+}
+
+
+#init_view_form textarea{
+    height: 150px;
+}
+
+#init_view_form label{
+    font-size: 17px;
+    color: lightgray;
+}
+
+#init_view_form input[type=button]:hover {
+    background-color: #2f394b;
+    border: 1px solid #3e4d68;
+    color: lightgray;
+    cursor: pointer;
+}
+
+
+#init_view_form input[type=button] {
+    margin-left: 79%;
+    width: 20%;
+    cursor: pointer;
+    padding: 8px 8px 8px 8px;
+    outline: none;
+    border-radius: 3px;
+    box-shadow: none;
+    text-align: center;
+    border: 1px solid #2e3034;
+    background-color: #394149;
+    font-size: 18px;
+    color: #929191;
+}
