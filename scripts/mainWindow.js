@@ -52,7 +52,7 @@ class MainWindow{
             console.log("Contexto da aba foi alterado")
             this.contexChangeStyle(evt.detail.context);
         })
-        Console.log("Os eventos foram carregados")
+        console.log("Os eventos foram carregados")
     }
     loadStorageFunctions(){
         this.onLoadFunctions.forEach( onLoadFunction =>{
