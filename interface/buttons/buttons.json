@@ -1,55 +1,128 @@
 [
     {
-        "name": "Creat a new data view",
-        "onclick": "openPopup('new')",
-        "context": "all-show"
-    },
-    {
-        "context": "open_show",
-        "onclick": "openPopup('start')",
+        "context": "start_show",
+        "events": [
+            {
+                "name": "OpenPopupMenu",
+                "details": {
+                    "menuName": "start"
+                }
+            }
+        ],
         "name": "Start read"
     },
     {
-        "context": "open_show",
+        "context": "start_show",
+        "events": [
+            {
+                "name": "OpenPopupMenu",
+                "details": {
+                    "menuName": "NewDataView"
+                }
+            }
+        ],
         "name": "Stop read"
     },
     {
         "context": "all-show",
         "onclick": "openPopup('open');showViews('open_data_views_saved','open')",
+        "events": [
+            {
+                "name": "OpenPopupMenu",
+                "details": {
+                    "menuName": "NewDataView"
+                }
+            }
+        ],
         "name": "Open a data view"
     },
     {
         "context": "all-show",
         "onclick": "openPopup('import')",
+        "events": [
+            {
+                "name": "OpenPopupMenu",
+                "details": {
+                    "menuName": "NewDataView"
+                }
+            }
+        ],
         "name": "Import a new data view"
     },
     {
         "context": "all-show",
-        "onclick": "openPopup('new')",
+        "events": [
+            {
+                "name": "OpenPopupMenu",
+                "details": {
+                    "menuName": "NewDataView"
+                }
+            }
+        ],
         "name": "Creat a new data view"
     },
     {
         "context": "all-show",
         "onclick": "openPopup('edit');showViews('edit_data_views_saved','edit')",
+        "events": [
+            {
+                "name": "OpenPopupMenu",
+                "details": {
+                    "menuName": "NewDataView"
+                }
+            }
+        ],
         "name": "Edit a data view"
     },
     {
         "context": "edit_show",
         "onclick": "openPopup('input');openInputs()",
+        "events": [
+            {
+                "name": "OpenPopupMenu",
+                "details": {
+                    "menuName": "NewDataView"
+                }
+            }
+        ],
         "name": "Edit inputs"
     },
     {
         "context": "edit_show",
         "onclick": "openPopup('blocks');showBlocks('open_block_saved')",
+        "events": [
+            {
+                "name": "OpenPopupMenu",
+                "details": {
+                    "menuName": "NewDataView"
+                }
+            }
+        ],
         "name": "Add a block"
     },
     {
         "context": "edit_show",
+        "events": [
+            {
+                "name": "OpenPopupMenu",
+                "details": {
+                    "menuName": "NewDataView"
+                }
+            }
+        ],
         "name": "Finish"
     },
     {
         "context": "edit_show",
         "onclick": "deleteDataView()",
+        "events": [
+            {
+                "name": "OpenPopupMenu",
+                "details": {
+                    "menuName": "NewDataView"
+                }
+            }
+        ],
         "name": "Delete"
     }
 ]
