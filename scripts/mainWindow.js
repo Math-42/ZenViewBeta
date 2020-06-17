@@ -20,19 +20,39 @@ class MainWindow{
     addOnLoadFunction(onLoadFunction){
         this.onLoadFunctions.push(onLoadFunction);
     }
+    contexChangeStyle(newContext){
+        let elements = document.getElementsByClassName("variable_context")
+        for (let i = 0; i < elements.length; i++) {
+            let styleClasses = elements[i].className.split(" ");
+            if(!(styleClasses.includes("all_show") || styleClasses.includes(newContext))){
+                elements[i].style.display = "none";
+            }else{
+                elements[i].style.display = "block";
+            }
+        }
+    }
     loadEvents(){
         window.addEventListener('ChangeSideMenu',(evt)=>{
+            console.log("Menu lateral foi alterado")
             this.sideMenu.changeSideMenu();
         })
         window.addEventListener('ClosePopupMenu',(evt)=>{
+            console.log("Menu popup foi fechado")
             this.popUpMenu.closePopup();
         })
         window.addEventListener('OpenPopupMenu',(evt)=>{
+            console.log("Menu popup foi aberto")
             this.popUpMenu.openPopup(evt.detail.menuName);
         })
         window.addEventListener('LoadNewTab',(evt)=>{
+            console.log("Nova aba foi carregada")
             this.tabs.openNewTab(evt.detail.name,evt.detail.context);
         })
+        window.addEventListener('ContextChange',(evt)=>{
+            console.log("Contexto da aba foi alterado")
+            this.contexChangeStyle(evt.detail.context);
+        })
+        Console.log("Os eventos foram carregados")
     }
     loadStorageFunctions(){
         this.onLoadFunctions.forEach( onLoadFunction =>{
@@ -47,7 +67,7 @@ class MainWindow{
         buttons.forEach(button => {//gera o html de todos os botoes
             this.buttons[button.id] = button;
             htmlButtons += `<button 
-                            class="${button.context}" 
+                            class="variable_context ${button.context}" 
                             type="button"
                             onclick=`
             button.events.forEach(event => {
@@ -56,6 +76,7 @@ class MainWindow{
             htmlButtons +=  `>${button.name}</button>`
         });
         document.getElementById("side_tab_menu").innerHTML = htmlButtons
+        console.log("Os botões foram carregados")
     }
     loadPopupOptions(){
         let htmlPopupOptions = ''
@@ -65,7 +86,7 @@ class MainWindow{
         popupOptionsReader.forEach(option => {//gera o html de todos os botoes do menu
             popupOptions[option.id] = option
             htmlPopupOptions += `<button 
-                            class="${option.context}" 
+                            class="variable_context ${option.context}" 
                             type="button"
                             id = "${option.id}"
                             onclick=`
@@ -76,6 +97,7 @@ class MainWindow{
         });
         this.popUpMenu.setTablinks(popupOptions);
         document.getElementById("optionTab").innerHTML = htmlPopupOptions
+        console.log("As opções do menu foram carregadas")
     }
     loadPopupMenus(){
         let htmlPopupMenus = ''
@@ -89,6 +111,7 @@ class MainWindow{
         });
         document.getElementById("tabcontentContainer").innerHTML = htmlPopupMenus
         this.popUpMenu.setMenus(popupMenus);
+        console.log("Os menus foram carregados")
     }
     loadPage(){
         var duracao = Date.now()//pega o horario atual
@@ -103,6 +126,7 @@ class MainWindow{
                 show: true
             })
         },duracao)
+        console.log("Programa carregado completamente")
     }
     dispatchEvent(eventName,details){
         console.log(eventName,details)
@@ -117,10 +141,6 @@ class MainWindow{
 const mainwindow = new MainWindow()
 
 window.onload = () =>{
-
-    ipc.on('mainLoadcompleto',()=>{
-        console.log("teste");
-    })
     mainwindow.loadStorageFunctions();
     mainwindow.tabs.tabsOnLoad()
 }
