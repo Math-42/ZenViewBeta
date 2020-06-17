@@ -69,12 +69,14 @@ module.exports = class Tabs{
             src: "./",
             closable: true,
             visible: true,
+            context: "all_show"
         });
 
         //evento de clicar em uma aba
         this.tabGroup.on("tab-active",()=>{
             let tempTab = this.tabGroup.getActiveTab()
             console.log(tempTab)
+            mainwindow.dispatchEvent('ContextChange',{"context": tempTab.context})
             //displayOptions("edit",false)
             //displayOptions("open",false)
             //displayOptions(tempTab.status,true)
@@ -98,7 +100,7 @@ module.exports = class Tabs{
                 mainTab.activate();
             }
         })
-
+        this.tab.context = "all_show";
         this.tab.activate()
     }
 }
