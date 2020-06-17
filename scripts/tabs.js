@@ -31,11 +31,11 @@ module.exports = class Tabs{
         })
         if(!alreadyOpen){
             let newTab = this.tabGroup.getActiveTab();//pega a aba atual
-            newTab.src = "dataViews/"+name+"/"+name+".html";//abre o html da nova aba
+            newTab.src = "../../dataViews/"+name+"/"+name+".html";//abre o html da nova aba
             newTab.context = context
             newTab.setTitle(name)
-            newTab.webview.src = "dataViews/"+name+"/"+name+".html"
-            let newObj = fs.readFileSync(`./dataViews/${name}/${name}.json`);
+            newTab.webview.src = "../../dataViews/"+name+"/"+name+".html"
+            let newObj = fs.readFileSync(`dataViews/${name}/${name}.json`);
             newObj = JSON.parse(newObj);
             newTab.descObj = newObj;
             newTab.activate();
