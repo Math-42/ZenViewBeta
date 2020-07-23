@@ -9,6 +9,8 @@ div.tab_manage{
 
 .etabs-tab{
     border-bottom: none ;
+    height: auto;
+    font-size: initial;
 }
 
 .etabs-buttons button{
