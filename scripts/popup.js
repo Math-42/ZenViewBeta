@@ -38,7 +38,7 @@ module.exports = class popUpMenu{
       tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
     document.getElementById(id).className += " active"
-    document.getElementById(menuName).style.display = "block";
+    document.getElementById(menuName).style.display = "flex";
     this.loadMenuFunction(menuName)
   }
 }
