@@ -77,9 +77,6 @@ module.exports = class Tabs{
             let tempTab = this.tabGroup.getActiveTab()
             console.log(tempTab)
             mainwindow.dispatchEvent('ContextChange',{"context": tempTab.context})
-            //displayOptions("edit",false)
-            //displayOptions("open",false)
-            //displayOptions(tempTab.status,true)
         });
 
         //evento de adicionar uma aba
