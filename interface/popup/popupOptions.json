@@ -70,11 +70,11 @@
             {
                 "name":"OpenPopupMenu",
                 "details":{
-                    "menuName":"Inputs"
+                    "menuName":"EditInputs"
                 }
             }
         ],
-        "id": "InputEdit_tablink",
+        "id": "EditInputs_tablink",
         "name": "Inputs"
     },
     {

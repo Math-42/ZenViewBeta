@@ -33,7 +33,7 @@
                 }
             }
         ],
-        "name": "Open a data view"
+        "name": "Open"
     },
     {
         "context": "all_show",
@@ -46,7 +46,7 @@
                 }
             }
         ],
-        "name": "Import a new data view"
+        "name": "Import"
     },
     {
         "context": "all_show",
@@ -58,7 +58,7 @@
                 }
             }
         ],
-        "name": "Creat a new data view"
+        "name": "New"
     },
     {
         "context": "all_show",
@@ -71,7 +71,7 @@
                 }
             }
         ],
-        "name": "Edit a data view"
+        "name": "Edit"
     },
     {
         "context": "edit_show",
@@ -79,7 +79,7 @@
             {
                 "name": "OpenPopupMenu",
                 "details": {
-                    "menuName": "Inputs"
+                    "menuName": "EditInputs"
                 }
             }
         ],
