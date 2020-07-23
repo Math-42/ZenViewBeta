@@ -20,7 +20,7 @@ class MainWindow{
     addOnLoadFunction(onLoadFunction){
         this.onLoadFunctions.push(onLoadFunction);
     }
-    contexChangeStyle(newContext){
+    contextChangeStyle(newContext){
         let elements = document.getElementsByClassName("variable_context")
         for (let i = 0; i < elements.length; i++) {
             let styleClasses = elements[i].className.split(" ");
@@ -50,7 +50,10 @@ class MainWindow{
         })
         window.addEventListener('ContextChange',(evt)=>{
             console.log("Contexto da aba foi alterado")
-            this.contexChangeStyle(evt.detail.context);
+            this.contextChangeStyle(evt.detail.context);
+        })
+        window.addEventListener('EditInputs',(evt)=>{
+            console.log("Lendo lista de inputs")
         })
         console.log("Os eventos foram carregados")
     }
