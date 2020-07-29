@@ -52,6 +52,10 @@ class MainWindow{
             console.log("Contexto da aba foi alterado")
             this.contextChangeStyle(evt.detail.context);
         })
+        window.addEventListener('saveDashBoard',(evt)=>{
+            console.log("Salvando DashBoard");
+            this.tabs.saveDashBoard();
+        })
         window.addEventListener('deleteDashBoard',(evt)=>{
             console.log("Deletando DashBoard");
             this.tabs.deleteCurrentDashBoard();
