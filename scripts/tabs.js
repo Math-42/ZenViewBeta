@@ -54,6 +54,15 @@ module.exports = class Tabs{
         }
     }
 
+    saveDashBoard(){
+        let answer = confirm("Save changes?");
+        if(answer === true){
+            mainwindow.dispatchEvent('ContextChange',{'context': 'start_show'});
+            let currentTab = this.tabGroup.getActiveTab();
+            fs.writeFileSync(`dataViews/${currentTab.title}/${currentTab.title}.json`,JSON.stringify(currentTab.descObj,null,"\t"));
+        }
+    }
+
     tabsOnLoad(){
         //funcao geradora de abas
         let newTabBtn = ()=>{

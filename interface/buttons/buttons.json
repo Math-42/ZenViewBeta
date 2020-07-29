@@ -101,7 +101,7 @@
         "context": "edit_show",
         "events": [
             {
-                "name": "",
+                "name": "saveDashBoard",
                 "details": {
                 }
             }
