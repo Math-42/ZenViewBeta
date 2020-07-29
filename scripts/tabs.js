@@ -1,4 +1,5 @@
 const TabGroup = require("electron-tabs")
+const fs = require('fs')
 
 module.exports = class Tabs{
     constructor(){
@@ -41,6 +42,15 @@ module.exports = class Tabs{
             newTab.activate();
         }else{
             alert("Already open")
+        }
+    }
+
+    deleteCurrentDashBoard(){
+        let answer = confirm("Are you shure?");
+        if(answer === true){
+            let currentTab = this.tabGroup.getActiveTab();
+            fs.rmdirSync(`dataViews/${currentTab.title}`,{ recursive: true });
+            currentTab.close()
         }
     }
 

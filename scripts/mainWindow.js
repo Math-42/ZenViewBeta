@@ -52,8 +52,9 @@ class MainWindow{
             console.log("Contexto da aba foi alterado")
             this.contextChangeStyle(evt.detail.context);
         })
-        window.addEventListener('EditInputs',(evt)=>{
-            console.log("Lendo lista de inputs")
+        window.addEventListener('deleteDashBoard',(evt)=>{
+            console.log("Deletando DashBoard");
+            this.tabs.deleteCurrentDashBoard();
         })
         console.log("Os eventos foram carregados")
     }

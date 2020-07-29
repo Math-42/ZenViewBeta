@@ -110,10 +110,9 @@
     },
     {
         "context": "edit_show",
-        "onclick": "deleteDataView()",
         "events": [
             {
-                "name": "",
+                "name": "deleteDashBoard",
                 "details": {
                 }
             }
