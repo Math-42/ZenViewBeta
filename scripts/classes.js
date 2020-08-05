@@ -9,12 +9,12 @@ class dataView{
 }
 
 class Input{
-    constructor(){
-        this.name = undefined;
-        this.operation = undefined;
+    constructor(name,operation){
+        this.name = name;
+        this.operation = (operation === undefined)? "": operation;
     }
     getValue(){
-        if(this.operation !== undefined){
+        if(this.operation !== ""){
             try{
                 return eval(this.operation)
             }catch(ERROR){
