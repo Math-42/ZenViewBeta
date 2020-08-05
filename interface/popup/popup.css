@@ -83,7 +83,7 @@ div.optionsContainer{
   outline: none;
   text-align: left;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.1s;
 }
 
 #optionTab button:hover {
