@@ -92,14 +92,14 @@ module.exports = class NewDataView{
             alert("Must have at least one input!");
             return;
         }
-        let dataViewA = new dataView(name.value,this.inputs.value,this.description.value);
+        let dataViewA = new dataView(name.value,parseInt(this.inputs.value),this.description.value);
         this.dataViews = fs.readdirSync('dataViews');
         if(!this.dataViews.includes(this.name.value)){
             dataViewA.inputs = [];
             for(let i = 0; i < parseInt(this.inputs.value);i++){
                 let newInput = new Input();
                 newInput.name = "input_"+i;
-                newInput.operation = "column_"+i;
+                newInput.operation = "col"+i;
                 dataViewA.inputs.push(newInput);
             }
             fs.mkdirSync(`dataViews/${this.name.value}`);
