@@ -1,4 +1,7 @@
 const TabGroup = require("electron-tabs")
+const classes = require('./classes.js')
+const dataView = classes.dataView
+const Input = classes.Input
 const fs = require('fs')
 
 module.exports = class Tabs{
@@ -36,9 +39,16 @@ module.exports = class Tabs{
             newTab.context = context
             newTab.setTitle(name)
             newTab.webview.src = "../../dataViews/"+name+"/"+name+".html"
-            let newObj = fs.readFileSync(`dataViews/${name}/${name}.json`);
-            newObj = JSON.parse(newObj);
-            newTab.dashBoard = newObj;
+            let newDashBoard = fs.readFileSync(`dataViews/${name}/${name}.json`);
+            newDashBoard = JSON.parse(newDashBoard);
+
+            let inputs = [];
+            newDashBoard.inputs.forEach(input => {
+                inputs.push(new Input(input.name, input.operation));
+            });
+            newDashBoard.inputs = inputs
+
+            newTab.dashBoard = newDashBoard;
             newTab.activate();
         }else{
             alert("Already open")
