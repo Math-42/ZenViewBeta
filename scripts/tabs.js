@@ -38,7 +38,7 @@ module.exports = class Tabs{
             newTab.webview.src = "../../dataViews/"+name+"/"+name+".html"
             let newObj = fs.readFileSync(`dataViews/${name}/${name}.json`);
             newObj = JSON.parse(newObj);
-            newTab.descObj = newObj;
+            newTab.dashBoard = newObj;
             newTab.activate();
         }else{
             alert("Already open")
@@ -59,7 +59,7 @@ module.exports = class Tabs{
         if(answer === true){
             mainwindow.dispatchEvent('ContextChange',{'context': 'start_show'});
             let currentTab = this.tabGroup.getActiveTab();
-            fs.writeFileSync(`dataViews/${currentTab.title}/${currentTab.title}.json`,JSON.stringify(currentTab.descObj,null,"\t"));
+            fs.writeFileSync(`dataViews/${currentTab.title}/${currentTab.title}.json`,JSON.stringify(currentTab.dashBoard,null,"\t"));
         }
     }
 
