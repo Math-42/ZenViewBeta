@@ -8,29 +8,6 @@ module.exports = class EditInputs{
         this.dashBoard;
         this.inputListElement;
     }
-    inputHtml(input){
-        let newInput = document.createElement("div");
-        newInput.id= `input_row_${input.name}`
-        let saveOption = (id) =>{return  `mainwindow.popUpMenu.menus['EditInputs'].saveInput('${id}')`}
-        let delOption = (id)=>{return `mainwindow.popUpMenu.menus['EditInputs'].deleteInput('${id}')`}
-        newInput.innerHTML = `<div class="row">
-                    <div class="col container" >
-                        <div class="row w-100 justify-content-between">
-                                <label class="col-2 h5" >Name:</label>
-                                <div class="col-10 ml-0 pl-0 justify-content-between">
-                                    <input class="w-75" type="text" value="${input.name}" id="input_name_${input.name}">
-                                    <input id="save_input_btn_${input.name}" onclick="${saveOption(input.name)}" class ="save_input_btn" type="button" value="Save">
-                                    <input id="delete_input_btn_${input.name}" onclick="${delOption(input.name)}" class ="delete_input_btn" type="button" value="Delete">
-                                </div>
-                        </div>
-                        <div class="row w-100 pt-2 justify-content-between">
-                                <label class="col-2 h5" >Return:</label>
-                                <input class="col-10 p-0" type="text" value="${input.operation}" id="input_new_return_${input.name}">
-                        </div>
-                    </div>
-                </div><hr class="w-100" >`;
-        return newInput;
-    }
     addNewInputOption(){
         if(this.dashBoard.qtdInputs >= 50){return;}
         let newInputOption = document.createElement("div");
@@ -63,7 +40,7 @@ module.exports = class EditInputs{
             cont ++;
         }
         let newInput = new Input(name+cont);
-        this.inputListElement.appendChild(this.inputHtml(newInput));
+        this.inputListElement.appendChild(newInput.inputHtml());
         this.dashBoard.inputs.push(newInput);
         this.addNewInputOption();
     }
@@ -75,7 +52,7 @@ module.exports = class EditInputs{
         this.dashBoard = mainwindow.tabs.tabGroup.getActiveTab().dashBoard;
 
         this.dashBoard.inputs.forEach(input => {
-             this.inputListElement.appendChild(this.inputHtml(input));
+             this.inputListElement.appendChild(input.inputHtml());
         });
 
         this.addNewInputOption();
@@ -100,7 +77,7 @@ module.exports = class EditInputs{
             this.dashBoard.inputs[idx].name = inputName;
             this.dashBoard.inputs[idx].operation = inputReturn;
 
-            inputList.insertBefore(this.inputHtml(newInput),document.getElementById(`input_row_${id}`));
+            inputList.insertBefore(newInput.inputHtml(),document.getElementById(`input_row_${id}`));
             inputList.removeChild(document.getElementById(`input_row_${id}`));
 
         }else{
