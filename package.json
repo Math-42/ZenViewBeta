@@ -11,7 +11,9 @@
     "dependencies": {
         "bootstrap": "^4.5.0",
         "electron-tabs": "^0.15.0",
+        "gridstack": "^2.0.0-rc",
         "jquery": "^3.5.1",
+        "plotly.js-dist": "^1.54.7",
         "popper.js": "^1.16.1"
     }
 }
