@@ -83,11 +83,11 @@
             {
                 "name":"OpenPopupMenu",
                 "details":{
-                    "menuName":"Blocks"
+                    "menuName":"BlocksList"
                 }
             }
         ],
-        "id": "Blocks_tablink",
-        "name": "Blocks"
+        "id": "BlocksList_tablink",
+        "name": "BlocksList"
     }
 ]

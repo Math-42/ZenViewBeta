@@ -237,3 +237,15 @@
     background-color: rgb(217, 65, 61);
     border-color: rgb(250, 65, 59);
 }
+
+/*
+    Estilo do menu de inserção dos plots
+*/
+
+#BlocksList{
+    padding: 0px;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+}

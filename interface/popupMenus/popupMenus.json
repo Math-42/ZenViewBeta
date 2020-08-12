@@ -2,5 +2,6 @@
     "NewDataView",
     "DataViewsList",
     "DataViewsEdit",
-    "EditInputs"
+    "EditInputs",
+    "BlocksList"
 ]
