@@ -12,6 +12,7 @@
         "bootstrap": "^4.5.0",
         "electron-tabs": "^0.15.0",
         "gridstack": "^2.0.0-rc",
+        "javascript-detect-element-resize": "^0.5.3",
         "jquery": "^3.5.1",
         "plotly.js": "^1.54.7",
         "popper.js": "^1.16.1"
