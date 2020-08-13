@@ -29,7 +29,7 @@
             {
                 "name": "OpenPopupMenu",
                 "details": {
-                    "menuName": "DataViewsList"
+                    "menuName": "DashBoardsList"
                 }
             }
         ],
@@ -54,7 +54,7 @@
             {
                 "name": "OpenPopupMenu",
                 "details": {
-                    "menuName": "NewDataView"
+                    "menuName": "NewDashBoard"
                 }
             }
         ],
@@ -67,7 +67,7 @@
             {
                 "name": "OpenPopupMenu",
                 "details": {
-                    "menuName": "DataViewsEdit"
+                    "menuName": "DashBoardsEdit"
                 }
             }
         ],

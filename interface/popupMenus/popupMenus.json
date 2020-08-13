@@ -1,7 +1,7 @@
 [
-    "NewDataView",
-    "DataViewsList",
-    "DataViewsEdit",
+    "NewDashBoard",
+    "DashBoardsList",
+    "DashBoardsEdit",
     "EditInputs",
     "BlocksList"
 ]

@@ -13,14 +13,21 @@ module.exports = class BlocksList{
         newBlockComponent.innerHTML = `<div style="background-color:blue" class="w-100 h-100">${block.category}</div>`
         return newBlockComponent;
     }
+    openNewPlot(plotConfig){
+        console.log("teste1");
+        let activeWebView = mainwindow.tabs.tabGroup.getActiveTab().webview;
+        plotConfig = JSON.stringify(plotConfig);
+        activeWebView.executeJavaScript(`thisDashBoard.receiver({abc:1})`);
+    }
     plotBtnHtmlComponent(){
         let newPlotBtnComponent = document.createElement("div");
+        let onclickEvent = "mainwindow.popUpMenu.menus['BlocksList'].openNewPlot()";
         newPlotBtnComponent.id = "PlotBtnComponent";
         newPlotBtnComponent.className = "col-4 p-1"
         newPlotBtnComponent.style.height =  "120px";
         newPlotBtnComponent.innerHTML = `
         <div class="w-100 h-100">
-            <input type="button" class="save_input_btn w-100 h-100" value=" + ">
+            <input type="button" style="font-size:50px" onclick="${onclickEvent}" class="save_input_btn w-100 h-100" value=" + ">
         </div>`
         
         return newPlotBtnComponent;
@@ -31,6 +38,7 @@ module.exports = class BlocksList{
         let newComponent = document.createElement("div");
         newComponent.id = "BlocksListParent_"+nameRegex;
         newComponent.className = "row";
+        newComponent.style.fontSize ="20px";
         newComponent.innerHTML =
         `   <div class="col-12">
                 <label class="mb-1">${name}</label>

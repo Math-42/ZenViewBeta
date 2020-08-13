@@ -1,6 +1,6 @@
 const TabGroup = require("electron-tabs")
 const classes = require('./classes.js')
-const dataView = classes.dataView
+const dashBoard = classes.dashBoard
 const Input = classes.Input
 const fs = require('fs')
 
@@ -35,11 +35,11 @@ module.exports = class Tabs{
         })
         if(!alreadyOpen){
             let newTab = this.tabGroup.getActiveTab();//pega a aba atual
-            newTab.src = "../../dataViews/"+name+"/"+name+".html";//abre o html da nova aba
+            newTab.src = "../../dashBoards/"+name+"/"+name+".html";//abre o html da nova aba
             newTab.context = context
             newTab.setTitle(name)
-            newTab.webview.src = "../../dataViews/"+name+"/"+name+".html"
-            let newDashBoard = fs.readFileSync(`dataViews/${name}/${name}.json`);
+            newTab.webview.src = "../../dashBoards/"+name+"/"+name+".html"
+            let newDashBoard = fs.readFileSync(`dashBoards/${name}/${name}.json`);
             newDashBoard = JSON.parse(newDashBoard);
 
             let inputs = [];
@@ -50,6 +50,7 @@ module.exports = class Tabs{
 
             newTab.dashBoard = newDashBoard;
             newTab.activate();
+            newTab.webview.openDevTools();
         }else{
             alert("Already open")
         }
@@ -59,7 +60,7 @@ module.exports = class Tabs{
         let answer = confirm("Are you shure?");
         if(answer === true){
             let currentTab = this.tabGroup.getActiveTab();
-            fs.rmdirSync(`dataViews/${currentTab.title}`,{ recursive: true });
+            fs.rmdirSync(`dashBoards/${currentTab.title}`,{ recursive: true });
             currentTab.close()
         }
     }
@@ -69,7 +70,7 @@ module.exports = class Tabs{
         if(answer === true){
             mainwindow.dispatchEvent('ContextChange',{'context': 'start_show'});
             let currentTab = this.tabGroup.getActiveTab();
-            fs.writeFileSync(`dataViews/${currentTab.title}/${currentTab.title}.json`,JSON.stringify(currentTab.dashBoard,null,"\t"));
+            fs.writeFileSync(`dashBoards/${currentTab.title}/${currentTab.title}.json`,JSON.stringify(currentTab.dashBoard,null,"\t"));
         }
     }
 

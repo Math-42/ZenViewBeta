@@ -1,4 +1,4 @@
-class dataView{
+class DashBoard{
     constructor(name,qtdInputs,desc){
         this.name = name;
         this.qtdInputs = qtdInputs;
@@ -49,6 +49,6 @@ class Input{
 
 
 
-let exportClasses = {dataView,Input}
+let exportClasses = {DashBoard,Input}
 
 module.exports = exportClasses

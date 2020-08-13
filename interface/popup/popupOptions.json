@@ -18,12 +18,12 @@
             {
                 "name":"OpenPopupMenu",
                 "details":{
-                    "menuName":"DataViewsList"
+                    "menuName":"DashBoardsList"
                 }
             }
         ],
-        "id": "DataViewsList_tablink",
-        "name": "Data views"
+        "id": "DashBoardsList_tablink",
+        "name": "Dashboards"
     },
     {
         "context": "all_show tablinks",
@@ -44,12 +44,12 @@
             {
                 "name":"OpenPopupMenu",
                 "details":{
-                    "menuName":"NewDataView"
+                    "menuName":"NewDashBoard"
                 }
             }
         ],
-        "id": "NewDataView_tablink",
-        "name": "New Data view"
+        "id": "NewDashBoard_tablink",
+        "name": "New Dashboard"
     },
     {
         "context": "all_show tablinks",
@@ -57,12 +57,12 @@
             {
                 "name":"OpenPopupMenu",
                 "details":{
-                    "menuName":"DataViewsEdit"
+                    "menuName":"DashBoardsEdit"
                 }
             }
         ],
-        "id": "DataViewsEdit_tablink",
-        "name": "Edit Data view"
+        "id": "DashBoardsEdit_tablink",
+        "name": "Edit Dashboard"
     },
     {
         "context": "edit_show tablinks ",
@@ -88,6 +88,6 @@
             }
         ],
         "id": "BlocksList_tablink",
-        "name": "BlocksList"
+        "name": "Plots"
     }
 ]

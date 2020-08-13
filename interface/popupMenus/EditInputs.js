@@ -1,6 +1,6 @@
 const fs = require('fs')
 const classes = require('../../scripts/classes')
-const dataView = classes.dataView
+const dashBoard = classes.dashBoard
 const Input = classes.Input
 
 module.exports = class EditInputs{
@@ -63,7 +63,6 @@ module.exports = class EditInputs{
         let inputReturn = document.getElementById(`input_new_return_${id}`).value;
         let nameAlreadyExists = false;
         for(let i=0;i <this.dashBoard.inputs.length;i++){
-            console.log(this.dashBoard.inputs[i].name, inputName,  id)
             if(this.dashBoard.inputs[i].name === inputName && id !== inputName){
                 nameAlreadyExists = true;
                 break;
