@@ -1,7 +1,9 @@
+/*
+    Esta é a classe principal para o programa funcionar, aqui estão contidos todos os elementos 
+    renderizados na tela, como o menu lateral, as abas, botões e etc
+*/
 
-
-const electron = require('electron')
-const ipc = electron.ipcRenderer
+const ipc = require('electron').ipcRenderer
 const fs = require('fs')
 const menus = require('../../scripts/imports.js')
 const classes = require('../../scripts/classes.js')
@@ -17,20 +19,39 @@ class MainWindow{
         this.sideMenu = new SideMenu();
         this.popUpMenu = new popUpMenu();
     }
+    /*
+        Função para guardar todas funções que devem ser carregadas apos o inicio do programa, como ler os botoes, menus
+        e renderiza-los
+        @params onLoadFunction funcão a ser guardada
+    */
     addOnLoadFunction(onLoadFunction){
         this.onLoadFunctions.push(onLoadFunction);
     }
+    /*
+        Função que indica que o contexto da aba foi alterado, as abas mostram opções diferentes comforme os contextos que 
+        estão abertos, como por exemplo, leitura, edição e nova aba 
+    */
     contextChangeStyle(newContext){
+        //pega todos elementos que variam conforme o contexto
         let elements = document.getElementsByClassName("variable_context")
+        //percorre os elementos lidos
         for (let i = 0; i < elements.length; i++) {
+            //separa cada classe do elemento lido
             let styleClasses = elements[i].className.split(" ");
+            //testa se o elemento possui a tag all_show, que indica que sempre deve ser mostrado ou se inclui a tag do novo contexto
             if(!(styleClasses.includes("all_show") || styleClasses.includes(newContext))){
+                //não mostra o elemento
                 elements[i].style.display = "none";
             }else{
+                //mostra o elemento
                 elements[i].style.display = "block";
             }
         }
     }
+    /*
+        Função que carrega todos os eventos pre definidos, uma vez que os menus comunicam com a tela principal e entre
+        se atraves de eventos
+    */
     loadEvents(){
         window.addEventListener('ChangeSideMenu',(evt)=>{
             console.log("Menu lateral foi alterado")
@@ -62,12 +83,18 @@ class MainWindow{
         })
         console.log("Os eventos foram carregados")
     }
+    /*
+        Percorre todas a funções salvas anteriormente para agora poder executa-las
+    */
     loadStorageFunctions(){
         this.onLoadFunctions.forEach( onLoadFunction =>{
             onLoadFunction();
         })
         this.loadPage();
     }
+    /*
+        Lê os botões que estão no arquivo buttons.json e os carrega como componentes
+    */
     loadButtons(){
         let htmlButtons = ''
         let buttons = fs.readFileSync('./interface/buttons/buttons.json')
@@ -86,6 +113,9 @@ class MainWindow{
         document.getElementById("side_tab_menu").innerHTML = htmlButtons
         console.log("Os botões foram carregados")
     }
+    /*
+        Carrega todas as opções do menu, do arquivo popupOptions.json
+    */
     loadPopupOptions(){
         let htmlPopupOptions = ''
         let popupOptions = {};
@@ -107,6 +137,10 @@ class MainWindow{
         document.getElementById("optionTab").innerHTML = htmlPopupOptions
         console.log("As opções do menu foram carregadas")
     }
+    /*
+        Carrega todos os menus, do arquivo popupMenus.json, que por sua vez são arquivos de modulos em .js
+        cada menu tem suas proprias funções dentro de se mesmo, assim como seu html e css
+    */
     loadPopupMenus(){
         let htmlPopupMenus = ''
         let popupMenus = {};
@@ -121,6 +155,9 @@ class MainWindow{
         this.popUpMenu.setMenus(popupMenus);
         console.log("Os menus foram carregados")
     }
+    /*
+        Carrega a parte visual da pagina, e calcula o tempo de load, para mostrar a pagina principal apos 3 segundos no minimo
+    */
     loadPage(){
         var duracao = Date.now()//pega o horario atual
         this.loadEvents();
@@ -136,6 +173,9 @@ class MainWindow{
         },duracao)
         console.log("Programa carregado completamente")
     }
+    /*
+        Função que deve ser chamada para comunicação entre modulos do programa
+    */
     dispatchEvent(eventName,details){
         console.log(eventName,details)
         if(details === undefined){
@@ -145,9 +185,9 @@ class MainWindow{
         }
     }
 }
-
+//cria a janela principal
 const mainwindow = new MainWindow()
-
+//espera a janela ser carregada para executar as seguintes funções
 window.onload = () =>{
     mainwindow.loadStorageFunctions();
     mainwindow.tabs.tabsOnLoad()
