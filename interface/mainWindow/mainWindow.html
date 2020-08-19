@@ -1,33 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>require('bootstrap');</script>
+    <script>
+        require('bootstrap');
+        require('gridstack/dist/gridstack.all')
+    </script>
     <link rel="stylesheet" type="text/css" href="../../node_modules/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="../../node_modules/electron-tabs/electron-tabs.css">
-    <link rel="stylesheet" href="css/mainWindow.css"/>
-    <link rel="stylesheet" href="css/tabs.css"/>
-    <link rel="stylesheet" href="css/sideMenu.css"/>
-    <link rel="stylesheet" href="css/main.css"/>
-    <link rel="stylesheet" href="../popup/popup.css"/>
-    <link rel="stylesheet" href="../popupMenus/css/menus.css"/>
+    <link rel="stylesheet" href="../../node_modules/gridstack/dist/gridstack.min.css" />
+    <link rel="stylesheet" href="css/mainWindow.css" />
+    <link rel="stylesheet" href="css/tabs.css" />
+    <link rel="stylesheet" href="css/sideMenu.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="../popup/popup.css" />
+    <link rel="stylesheet" href="../popupMenus/css/menus.css" />
+    <link rel="stylesheet" href="../dashBoard/dashBoard.css" />
     <script language="JavaScript" src="../../scripts/mainWindow.js"></script>
 </head>
+
 <body>
-    <div id="side_menu" >
+
+    <div id="side_menu">
         <a href="javascript:void(0)" class="closebtn" onclick="mainwindow.dispatchEvent('ChangeSideMenu')">&#9776;</a>
         <div class="tab_menu" id="side_tab_menu">
         </div>
     </div>
+
     <div id="main">
-        <div class="tab_manage">
-            <div class="etabs-tabgroup" id="tabs">
-                <div class="etabs-tabs"></div>
-                <div class="etabs-buttons"></div>
-            </div>
-            <div class="etabs-views"></div>
+        <h5 id="title">
+
+        </h5>
+        <div class="grid-stack"id="main_grids_stack">
+
         </div>
+
+        <div class="h-100 container" id="editing_menu">
+            <div class="form-inline justify-content-between">
+                <h3 for="">Editor</h3>
+                <button class="btn btn-danger mb-2">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                        <path fill-rule="evenodd"
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="form-group standard_border" id="editing_menu_form">
+                <div class="form-group">
+                    <label for="packageSelector">Selecione o pacote:</label>
+                    <select class="form-control" id="packageSelector">
+                        <option>Plotly</option>
+                        <option>*Apex Charts*</option>
+                    </select>
+                </div>
+                <div id="editing_menu_loaded">
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header btn" id="headingOne" data-toggle="collapse"
+                                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <h6 class="mb-0">
+                                    Geral
+                                </h6>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#accordion">
+                                <div class="card-body form-group">
+                                    <div class="form-group">
+                                        <label for="title_chart">Título</label>
+                                        <input class="form-control" id="title_chart" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="packageSelector">Tipo de exportação:</label>
+                                        <select class="form-control" id="packageSelector">
+                                            <option>Png</option>
+                                            <option>Svg</option>
+                                            <option>Jpeg</option>
+                                            <option>Webp</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="packageSelector">Tipo de gráfico:</label>
+                                        <select class="form-control" id="packageSelector">
+                                            <option>Linhas</option>
+                                            <option>Barras</option>
+                                            <option>Tabela</option>
+                                            <option>Pizza</option>
+                                            <option>Indicadores</option>
+                                            <option>3D</option>
+                                            <option>GPS</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card">
+                            <div class="card-header btn collapsed" id="heading_2" data-toggle="collapse"
+                                data-target="#collapse_2" aria-expanded="false" aria-controls="collapse_2">
+                                <h6 class="mb-0">
+                                    Séries
+                                </h6>
+                            </div>
+
+                            <div id="collapse_2" class="collapse" aria-labelledby="heading_2" data-parent="#accordion">
+                                <div class="card-body form-group">
+                                    <div class="form-group">
+                                        <small id="helpId" class="text-muted">Nome</small>
+                                        <input type="text" name="" id="" class="form-control" placeholder=""
+                                            aria-describedby="helpId">
+                                    </div>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">x</div>
+                                        </div>
+                                        <select class="form-control" id="packageSelector">
+                                            <option></option>
+                                            <option>Simples 2D</option>
+                                            <option>Tabela</option>
+                                            <option>Pizza</option>
+                                            <option>Indicadores</option>
+                                            <option>3D</option>
+                                            <option>GPS</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">y</div>
+                                        </div>
+                                        <select class="form-control" id="packageSelector">
+                                            <option></option>
+                                            <option>Simples 2D</option>
+                                            <option>Tabela</option>
+                                            <option>Pizza</option>
+                                            <option>Indicadores</option>
+                                            <option>3D</option>
+                                            <option>GPS</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="btn btn-success w-100">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header btn" id="style_option" data-toggle="collapse"
+                                data-target="#chart_style_option" aria-expanded="true"
+                                aria-controls="chart_style_option">
+                                <h6 class="mb-0">
+                                    Estilo
+                                </h6>
+                            </div>
+
+                            <div id="chart_style_option" class="collapse" aria-labelledby="style_option"
+                                data-parent="#accordion">
+                                <div class="card-body form-group">
+                                    <div class="form-group">
+                                        <small id="helpId" class="text-muted">Série</small>
+                                        <select class="form-control" id="packageSelector">
+                                            <option>Png</option>
+                                            <option>Svg</option>
+                                            <option>Jpeg</option>
+                                            <option>Webp</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <form>
+                                            <label class="form-row">Pontos</label>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <small id="helpId" class="text-muted">Tamanho</small>
+                                                    <select class="form-control" id="packageSelector">
+                                                        <option>0</option>
+                                                        <option>5</option>
+                                                        <option>10</option>
+                                                        <option>15</option>
+                                                        <option>20</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col">
+                                                    <small id="helpId" class="text-muted">Cor</small>
+                                                    <input type="color" class="form-control">
+                                                </div>
+                                            </div>
+                                            <label class="form-row mt-1">Linha</label>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <small id="helpId" class="text-muted">Tamanho</small>
+                                                    <select class="form-control" id="packageSelector">
+                                                        <option>0</option>
+                                                        <option>5</option>
+                                                        <option>10</option>
+                                                        <option>15</option>
+                                                        <option>20</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col">
+                                                    <small id="helpId" class="text-muted">Cor</small>
+                                                    <input type="color" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <small id="helpId" class="text-muted">Tracejado</small>
+                                                    <select class="form-control" id="packageSelector">
+                                                        <option>Solido</option>
+                                                        <option>Potilhado</option>
+                                                        <option>Traço e ponto</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col">
+                                                    <small id="helpId" class="text-muted">Interpolação</small>
+                                                    <select class="form-control" id="packageSelector">
+                                                        <option>Linear</option>
+                                                        <option>Suave</option>
+                                                        <option>Degraus</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-check mt-3">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" name="" id=""
+                                                        value="checkedValue" checked>
+                                                    Mostrar na legenda
+                                                </label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card">
+                            <div class="card-header btn" id="axes_option" data-toggle="collapse"
+                                data-target="#collapse_axes_option" aria-expanded="true"
+                                aria-controls="collapse_axes_option">
+                                <h6 class="mb-0">
+                                    Eixos
+                                </h6>
+                            </div>
+
+                            <div id="collapse_axes_option" class="collapse" aria-labelledby="axes_option"
+                                data-parent="#accordion">
+                                <div class="card-body form-group">
+                                    <div class="form-group">
+                                        <label for="title_chart">Eixo x</label>
+                                        <input class="form-control" id="title_chart" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="title_chart">Eixo y</label>
+                                        <input class="form-control" id="title_chart" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
     <div id="popup_background">
         <div id="popup_menu">
@@ -44,4 +282,5 @@
         </div>
     </div>
 </body>
+
 </html>

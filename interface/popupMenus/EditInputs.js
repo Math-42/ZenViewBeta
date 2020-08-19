@@ -49,7 +49,7 @@ module.exports = class EditInputs{
 
         this.inputListElement.innerHTML = "<hr>";
 
-        this.dashBoard = mainwindow.tabs.tabGroup.getActiveTab().dashBoard;
+        this.dashBoard = mainwindow.currentDashBoard;
 
         this.dashBoard.inputs.forEach(input => {
              this.inputListElement.appendChild(input.inputHtml());

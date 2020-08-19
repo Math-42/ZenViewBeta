@@ -20,7 +20,7 @@ module.exports = class DashBoardsList{
         this.postList(dashBoardsList)
     }
     openNewDashBoard(dashBoardName){
-        mainwindow.dispatchEvent('LoadNewTab',{'name':dashBoardName,'context': 'start_show'})
+        mainwindow.dispatchEvent('LoadNewDashBoard',{'name':dashBoardName,'context': 'start_show'})
         document.getElementById("dashBoardsSearchBar").value = ""
         mainwindow.dispatchEvent('ClosePopupMenu');
     }

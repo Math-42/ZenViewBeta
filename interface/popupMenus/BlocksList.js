@@ -14,10 +14,7 @@ module.exports = class BlocksList{
         return newBlockComponent;
     }
     openNewPlot(plotConfig){
-        console.log("teste1");
-        let activeWebView = mainwindow.tabs.tabGroup.getActiveTab().webview;
-        plotConfig = JSON.stringify(plotConfig);
-        activeWebView.executeJavaScript(`thisDashBoard.receiver({abc:1})`);
+        mainwindow.dispatchEvent("addNewBlock",plotConfig);
     }
     plotBtnHtmlComponent(){
         let newPlotBtnComponent = document.createElement("div");
