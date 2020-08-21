@@ -1,52 +1,51 @@
-module.exports = class EditingMenu{
-    constructor(){
+const PlotlyEditingMenu = require('./menus/plotlyEditingMenu')
+module.exports = class EditingMenu {
+    constructor() {
         this.isOpen = false;
+        this.currentMenu;
+        this.plotlyMenu = new PlotlyEditingMenu();
+        this.whoCalled;
+        this.block;
     }
-    openPlotEditingMenu(){
-        if(!this.isOpen){
-            console.log("menu de edição de plots aberto");
-            if(document.getElementById("editing_menu").style.display ==="block"){
-                document.getElementById("editing_menu").style.display = "none";
-                document.getElementById("main").style.marginRight = "0px";
-                
-            }else{
-                document.getElementById("editing_menu").style.display = "block";
-                document.getElementById("editing_menu").style.width = "22%";
-                document.getElementById("main").style.marginRight = "22%";
+    openPlotEditingMenu(block) {
+        block = block.block
+        if (this.isOpen && block.id === this.whoCalled) {
+            document.getElementById("editing_menu").style.display = "none";
+            document.getElementById("main").style.marginRight = "0px";
+            document.getElementById(this.whoCalled+"_plot").style.boxShadow = "0px 1px 22px -12px #607D8B"
+            this.isOpen = false;
+        } else {
+            try{
+                document.getElementById(this.whoCalled+"_plot").style.boxShadow = "0px 1px 22px -12px #607D8B"
+            }catch(error){
+
             }
+            this.whoCalled = block.id
+            this.block = block;
+            document.getElementById("editing_menu").style.display = "block";
+            document.getElementById("editing_menu").style.width = "22%";
+            document.getElementById("main").style.marginRight = "22%";
+            document.getElementById(this.whoCalled+"_plot").style.boxShadow = "10px 10px 22px -12px #007bff"
+            this.isOpen = true;
+            this.loadMenu()
         }
     }
-    createOption(optionObj){
-        let option = document.createElement('div');
-        option.className = "card";
-        `<div class="card">
-            <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <h5 class="mb-0">
-                        ${optionObj.title}
-                </h5>
-            </div>
-
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                data-parent="#accordion">
-                <div class="card-body">
-                    ${optionObj.body}
-                </div>
-            </div>
-        </div>`
+    loadMenu(selection) {
+        selection = (selection === undefined) ? this.block.plotLib : selection
+        if (selection === "Plotly") {
+            this.currentMenu = this.plotlyMenu;
+            this.currentMenu.load(this.block.plot)
+        }
     }
-    init(){
-        let options = document.getElementsByClassName("collapsible");
-        console.log(options)
-        for(let i=0;i<options.length;i++){
-            options[i].addEventListener("click", () => {
-                this.classList.toggle("active");
-                let content = this.nextElementSibling;
-                if (content.style.maxHeight){
-                    content.style.maxHeight = null;
-                } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                } 
-            });
-        };      
+    init() {
+        document.getElementById("packageSelector").onchange = () => {
+            let selection = document.getElementById("packageSelector").value
+            console.log("Opção selcionada: " + selection)
+            this.loadMenu(selection);
+        }
+        document.getElementById("editingMenuDeleteBtn").onclick = () =>{
+            this.openPlotEditingMenu({block: this.block});
+        }
+        this.plotlyMenu.init()
     }
 }
