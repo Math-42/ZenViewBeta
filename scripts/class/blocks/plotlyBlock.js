@@ -16,7 +16,7 @@ module.exports = class PlotlyBlock {
             title: this.layout.title.text,
             format: this.config.format,
             mode: this.config.mode,
-            showLegend: this.layout.showLegend,
+            showlegend: this.layout.showlegend,
             series: this.series,
             traces: this.data,
             xaxis: {
@@ -84,6 +84,22 @@ module.exports = class PlotlyBlock {
         });
         Plotly.update(this.id)
     }
+    removeSerie(serieName){
+        let i = 0;
+        for (i = 0; i < this.data.length; i++) {
+            if (this.data[i].name === serieName) {
+                break;
+            }
+        };
+        for (i = 0; i < this.series.length; i++) {
+            if (this.series[i].name === serieName) {
+                this.series.splice(i,1);
+                break;
+            }
+        };
+        Plotly.deleteTraces(this.id, i)
+        console.log(this.series);
+    }
     init() {
         this.config.staticPlot = true;
         this.config.responsive = true;
@@ -91,8 +107,9 @@ module.exports = class PlotlyBlock {
         this.config.format = "png";
         this.config.type = "scatter";
         this.layout = {
+            showlegend: true,
             title: {
-                text: "asd",
+                text: "",
                 x:0.1,
                 font: {
                     family: 'Arial',
