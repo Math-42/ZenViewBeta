@@ -5,6 +5,7 @@ body,html{
     height: 100%;
 }
 #editing_menu {
+    border-left: 1px solid lightgray;
     height: 100%;
     width: 22%;
     min-width: 360px;
@@ -62,5 +63,4 @@ body,html{
 .standard_border{
     border: 1px solid #ced4da;
     border-radius: .25rem;
-    padding: 15px;
 }
