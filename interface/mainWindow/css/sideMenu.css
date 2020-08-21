@@ -37,6 +37,7 @@
 #side_menu button:hover {
     background-color: #262f3f;
     border: 1px solid #2e394d;
+    color: white;
     cursor: pointer;
 }
 
