@@ -33,7 +33,7 @@ module.exports = class PlotlyEditingMenu {
                 break;
             }
         }
-        document.getElementById("Plotly_showLegend").checked = (data.showLegend === true) ? true : false;
+        document.getElementById("Plotly_showLegend").checked = (data.showlegend === true) ? true : false;
     }
     setSeries() {
         let inputs = mainwindow.currentDashBoard.inputs;
@@ -57,16 +57,33 @@ module.exports = class PlotlyEditingMenu {
     setStyle() {
         let traces = this.plot.data;
         let options = document.getElementById('Plotly_SelectedTrace')
+        let seriesList = document.getElementById('Plotly_seriesList')
+        seriesList.innerHTML = ""
         options.innerHTML = ""
         let option;
+        let newSerie
         traces.forEach(trace => {
             option = document.createElement('option');
             option.innerHTML = trace.name;
             options.appendChild(option);
+            newSerie = document.createElement('div');
+            newSerie.className = " input-group mb-1";
+            newSerie.id = `Plotly_serie_${trace.name}`
+            newSerie.innerHTML = `  <input type="text" class="form-control" placeholder="${trace.name}" readonly>
+                                <div class="input-group-append">
+                                    <button id="Plotly_rmv_${trace.name}" class="btn btn-secondary"
+                                        type="button">&times;</button>
+                                </div>`
+            seriesList.appendChild(newSerie);
+
+            document.getElementById(`Plotly_rmv_${trace.name}`).onclick = () => {
+                document.getElementById(`Plotly_serie_${trace.name}`).remove();
+                this.plot.removeSerie(`${trace.name}`);
+            }
         });
     }
     attTraceStyle(traceName) {
-        if(traceName === undefined || traceName ===""){
+        if (traceName === undefined || traceName === "") {
             return 0;
         }
         let traces = this.plot.data;
@@ -131,9 +148,10 @@ module.exports = class PlotlyEditingMenu {
     attGeral(data) {
         let formData = this.getData(data);
         console.log(formData)
+        let showLegend = document.getElementById('Plotly_showLegend').checked
         let plotLayout = {
             title: formData.title,
-            showLegend: (formData.showLegend === "on") ? true : false,
+            showlegend: showLegend,
         }
         let plotConfig = {
             format: formData.format,
@@ -143,6 +161,17 @@ module.exports = class PlotlyEditingMenu {
     }
     attSeries(data) {
         let formData = this.getData(data);
+
+        if (formData.name_trace === undefined || formData.name_trace === "") {
+            return;
+        }
+
+        for (let i = 0; i < this.plot.data.length; i++) {
+            if (this.plot.data[i].name === formData.name_trace) {
+                return;
+            }
+        };
+
         let newcolor = String([this.colors[this.colorCount]])
         this.plot.addSerie({
             name: formData.name_trace,
@@ -167,6 +196,21 @@ module.exports = class PlotlyEditingMenu {
         newOption.value = formData.name_trace;
         document.getElementById('Plotly_SelectedTrace').appendChild(newOption);
         document.getElementById('Plotly_name_trace').value = "";
+        let newSerie = document.createElement('div');
+        newSerie.className = " input-group mb-1";
+        newSerie.id = `Plotly_serie_${formData.name_trace}`
+        newSerie.innerHTML = `  <input type="text" class="form-control" placeholder="${formData.name_trace}" readonly>
+                                <div class="input-group-append">
+                                    <button id="Plotly_rmv_${formData.name_trace}" class="btn btn-secondary"
+                                        type="button">&times;</button>
+                                </div>`
+        document.getElementById('Plotly_seriesList').appendChild(newSerie);
+
+        document.getElementById(`Plotly_rmv_${formData.name_trace}`).onclick = () => {
+            console.log("Série removida")
+            document.getElementById(`Plotly_serie_${formData.name_trace}`).remove();
+            this.plot.removeSerie(`${formData.name_trace}`);
+        }
 
     }
     attStyle(data) {
@@ -227,6 +271,7 @@ module.exports = class PlotlyEditingMenu {
         }
         document.getElementById("style_option").onclick = () => {
             console.log("formulario do estilo foi alterado")
+            this.setStyle()
             this.attTraceStyle(document.getElementById("Plotly_SelectedTrace").value);
         }
     }
