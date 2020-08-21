@@ -52,15 +52,25 @@ class MainWindow {
             }
         }
     }
-    changeTitle(newTitle) {
-        document.getElementById("title").innerHTML = newTitle;
+    changeTitle(newTitle,context) {
+        let text;
+        if(context ==="all_show"){
+            
+        }else if(context ==="edit_show"){
+            text = "Editing: "
+        }else if(context ==="start_show"){
+            text = "Showing: ";
+        }else{
+            text = context
+        }
+        document.getElementById("title").innerHTML = text + newTitle;
     }
     /*
 
     */
     openNewDashBoard(name, context) {
 
-        this.changeTitle(name)
+        this.changeTitle(name, context)
 
         
 
