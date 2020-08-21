@@ -12,6 +12,7 @@ const SideMenu = require('../../scripts/sideMenu.js')
 const popUpMenu = require('../../scripts/popup.js')
 const DashBoard = classes.DashBoard
 const Input = classes.Input
+const EditingMenu = classes.EditingMenu
 
 class MainWindow {
     constructor() {
@@ -20,6 +21,7 @@ class MainWindow {
         this.currentDashBoard;
         this.sideMenu = new SideMenu();
         this.popUpMenu = new popUpMenu();
+        this.EditingMenu = new EditingMenu();
     }
     /*
         Função para guardar todas funções que devem ser carregadas apos o inicio do programa, como ler os botoes, menus
@@ -148,8 +150,8 @@ class MainWindow {
             this.deleteCurrentDashBoard();
         })
         window.addEventListener('openEditingMenu', (evt) => {
-            console.log("Deletando DashBoard");
-            this.deleteCurrentDashBoard();
+            console.log("Abrindo menu de edição");
+            this.EditingMenu.openPlotEditingMenu(evt.detail);
         })
         window.addEventListener('addNewBlock', (evt) => {
             console.log("Adicionando novo bloco");
@@ -238,6 +240,7 @@ class MainWindow {
         this.loadButtons()
         this.loadPopupOptions()
         this.loadPopupMenus()
+        this.EditingMenu.init()
         duracao = Date.now() - duracao //pega a duracao do load
         duracao = (duracao > 3000) ? 0 : 3000 - duracao //testa se foram mais de 3 segundos
         setTimeout(() => { //caso n tenha sido espera o gif terminar para chamar a janela principal
