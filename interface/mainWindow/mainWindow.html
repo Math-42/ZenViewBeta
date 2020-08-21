@@ -30,7 +30,15 @@
     </div>
 
     <div id="main">
-        <div class="alert alert-dark m-2 p-1" id="title" role="alert">
+        <div class="alert alert-dark m-2 p-1" role="alert">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+            <span id="title">
+
+            </span>
         </div>
 
         <div class="grid-stack" id="main_grids_stack">
@@ -46,7 +54,7 @@
             </div>
 
             <div class="form-group standard_border">
-                <div class="form-group">
+                <div class="form-group m-2 p-2">
                     <label for="">Selecione o pacote:</label>
                     <select class="form-control" id="packageSelector">
                         <option>Plotly</option>
@@ -95,7 +103,7 @@
                                             <div class="form-check mt-3">
                                                 <label class="form-check-label">
                                                     <input type="checkbox" class="form-check-input"
-                                                        id="Plotly_showLegend">
+                                                        id="Plotly_showLegend" checked>
                                                     Mostrar legenda
                                                 </label>
                                             </div>
@@ -112,9 +120,10 @@
                                         Séries
                                     </h6>
                                 </div>
-                                <form id="plotly_series_form">
-                                    <div id="collapse_2" class="collapse" aria-labelledby="heading_2"
-                                        data-parent="#accordion">
+
+                                <div id="collapse_2" class="collapse" aria-labelledby="heading_2"
+                                    data-parent="#accordion">
+                                    <form id="plotly_series_form">
                                         <div class="card-body form-group">
                                             <div class="input-group">
                                                 <div class="input-group mb-3">
@@ -141,8 +150,11 @@
                                                 </select>
                                             </div>
                                         </div>
+                                    </form>
+                                    <div id='Plotly_seriesList' class="standard_border p-3 m-2" style="outline: none;">
                                     </div>
-                                </form>
+                                </div>
+
                             </div>
                             <div class="card">
                                 <div class="card-header btn" id="style_option" data-toggle="collapse"
