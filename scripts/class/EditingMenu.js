@@ -43,8 +43,12 @@ module.exports = class EditingMenu {
             console.log("Opção selcionada: " + selection)
             this.loadMenu(selection);
         }
+        document.getElementById("editingMenuCloseBtn").onclick = () =>{
+            this.openPlotEditingMenu({block: this.block});
+        }
         document.getElementById("editingMenuDeleteBtn").onclick = () =>{
             this.openPlotEditingMenu({block: this.block});
+            mainwindow.dispatchEvent("RemoveBlock",this.block);
         }
         this.plotlyMenu.init()
     }
