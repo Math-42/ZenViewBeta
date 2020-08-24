@@ -52,15 +52,15 @@ class MainWindow {
             }
         }
     }
-    changeTitle(newTitle,context) {
+    changeTitle(newTitle, context) {
         let text;
-        if(context ==="all_show"){
-            
-        }else if(context ==="edit_show"){
+        if (context === "all_show") {
+
+        } else if (context === "edit_show") {
             text = "Editing: "
-        }else if(context ==="start_show"){
+        } else if (context === "start_show") {
             text = "Showing: ";
-        }else{
+        } else {
             text = context
         }
         document.getElementById("title").innerHTML = text + newTitle;
@@ -72,30 +72,28 @@ class MainWindow {
 
         this.changeTitle(name, context)
 
-        
+
 
         let dashBoardObj = fs.readFileSync(`dashBoards/${name}/${name}.json`);
         dashBoardObj = JSON.parse(dashBoardObj);
         this.currentDashBoard = new DashBoard()
+        if (context === "edit_show") {
+            this.currentDashBoard.editing = true
+            console.log("editando")
+        } else {
+            this.currentDashBoard.editing = false
+        }
+
         this.currentDashBoard.loadFromJson(dashBoardObj)
         this.currentDashBoard.init();
-        this.currentDashBoard.clear();
-
         this.currentDashBoard.context = context
 
-        let inputs = [];
-
-        dashBoardObj.inputs.forEach(input => {
-            inputs.push(new Input(input.name, input.operation));
-        });
-
-        this.currentDashBoard.inputs = inputs
 
         console.log(this.currentDashBoard)
         mainwindow.dispatchEvent('ContextChange', {
             "context": context
         })
-        
+
     }
 
 
@@ -117,13 +115,36 @@ class MainWindow {
     saveCurrentDashBoard() {
         let answer = confirm("Save changes?");
         if (answer === true) {
-            mainwindow.dispatchEvent('ContextChange', {
-                'context': 'start_show'
+
+            let serializedData = [];
+            this.currentDashBoard.gridStack.engine.nodes.forEach((node) => {
+                serializedData.push({
+                    id: node.id,
+                    x: node.x,
+                    y: node.y,
+                    width: node.width,
+                    height: node.height
+                });
+            });
+            serializedData.forEach(widget => {
+                for (let i = 0; i < this.currentDashBoard.blocks.length; i++) {
+                    if (this.currentDashBoard.blocks[i].id == widget.id) {
+                        this.currentDashBoard.blocks[i].id = widget.id,
+                            this.currentDashBoard.blocks[i].x = widget.x,
+                            this.currentDashBoard.blocks[i].y = widget.y,
+                            this.currentDashBoard.blocks[i].width = widget.width,
+                            this.currentDashBoard.blocks[i].height = widget.height
+                    }
+                }
             });
             let name = this.currentDashBoard.name
-            let gridStack = this.currentDashBoard.gridStack;
-            this.currentDashBoard.gridStack = undefined;
+            this.currentDashBoard.gridStack = {};
             fs.writeFileSync(`dashBoards/${name}/${name}.json`, JSON.stringify(this.currentDashBoard, null, "\t"));
+
+            mainwindow.dispatchEvent('LoadNewDashBoard', {
+                'name': name,
+                'context': 'start_show'
+            })
         }
     }
     /*
@@ -166,6 +187,10 @@ class MainWindow {
         window.addEventListener('addNewBlock', (evt) => {
             console.log("Adicionando novo bloco");
             this.currentDashBoard.addNewWidget(evt.detail)
+        })
+        window.addEventListener('RemoveBlock', (evt) => {
+            console.log("Removendo um bloco");
+            this.currentDashBoard.removeWidget(evt.detail)
         })
         console.log("Os eventos foram carregados")
     }
