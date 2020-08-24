@@ -7,31 +7,45 @@ module.exports = class Block {
         this.id = id;
         this.width = 4;
         this.height = 3;
-        this.inputs = [];
-        this.plot = {};
-    }
-    packageSelector() {
-        let newPlot;
+        this.x;
+        this.y;
+        this.editing = true;
         if (this.plotLib === "Plotly") {
             this.plot = new PlotlyBlock(this.id);
-            newPlot = this.plot.htmlComponent();
+        }else{
+            this.plot = {}
         }
-        newPlot.ondblclick = () => {
-            mainwindow.dispatchEvent('openEditingMenu', {
-                "block": this
-            });
-        };
-        return newPlot;
     }
-    init(){
-        console.log("inicializando bloco "+this.id);
-        this.plot.init();
+    loadFromJson(BlockJson){
+        this.width = BlockJson.width;
+        this.height = BlockJson.height;
+        this.x = BlockJson.x;
+        this.y = BlockJson.y;
+        this.plotLib = BlockJson.plotLib;
+        this.id = BlockJson.id
+        if (this.plotLib === "Plotly") {
+            this.plot = new PlotlyBlock(this.id);
+            this.plot.loadFromJson(BlockJson.plot);
+            console.log(this.plot)
+        }
+    }
+    init(editing){
+        this.editing = editing;
+        console.log("inicializando bloco "+this.id, "editando :"+this.editing);
+        this.plot.init(this.editing);
+        if(this.editing){
+            document.getElementById(this.id).ondblclick = () => {
+                mainwindow.dispatchEvent('openEditingMenu', {
+                    "block": this
+                });
+            };
+        }
     }
     plotHtmlComponent() {
         let newWidget = document.createElement("div");
         newWidget.id = this.id;
         newWidget.className = "grid-stack-item";
-        newWidget.appendChild(this.packageSelector());
+        newWidget.appendChild(this.plot.htmlComponent());
         return newWidget;
     }
 }
