@@ -1,4 +1,5 @@
 const Plotly = require('plotly.js');
+const EditingMenu = require('../EditingMenu');
 
 
 module.exports = class PlotlyBlock {
@@ -10,8 +11,17 @@ module.exports = class PlotlyBlock {
         this.series = [];
         this.plotConfigs = {}
     }
+    loadFromJson(PlotlyJson) {
+        console.log("inicializando " + this.id, this.data);
+        this.id = PlotlyJson.id;
+        this.data = PlotlyJson.data;
+        this.layout = PlotlyJson.layout;
+        this.config = PlotlyJson.config;
+        this.series = PlotlyJson.series;
+        this.plotConfigs = PlotlyJson.plotConfigs;
+        console.log("inicializando " + this.id, this.data);
+    }
     getData() {
-        console.log(this.config)
         this.plotConfigs = {
             title: this.layout.title.text,
             format: this.config.format,
@@ -46,7 +56,6 @@ module.exports = class PlotlyBlock {
     }
     attLayout(newLayout) {
         Plotly.relayout(this.id, newLayout);
-        console.log(this.layout)
     }
     attConfig(newConfig) {
         this.config = newConfig;
@@ -64,7 +73,6 @@ module.exports = class PlotlyBlock {
         })
     }
     addSerie(newSerie) {
-        console.log(this.data)
         this.series.push(newSerie);
         let x = [];
         let y = [];
@@ -82,9 +90,10 @@ module.exports = class PlotlyBlock {
             line: newSerie.line,
             marker: newSerie.marker
         });
+
         Plotly.update(this.id)
     }
-    removeSerie(serieName){
+    removeSerie(serieName) {
         let i = 0;
         for (i = 0; i < this.data.length; i++) {
             if (this.data[i].name === serieName) {
@@ -93,15 +102,15 @@ module.exports = class PlotlyBlock {
         };
         for (i = 0; i < this.series.length; i++) {
             if (this.series[i].name === serieName) {
-                this.series.splice(i,1);
+                this.series.splice(i, 1);
                 break;
             }
         };
         Plotly.deleteTraces(this.id, i)
-        console.log(this.series);
     }
-    init() {
-        this.config.staticPlot = true;
+    init(editing) {
+        console.log("inicializando " + this.id, this.data);
+        this.config.staticPlot = editing;
         this.config.responsive = true;
         this.config.displaylogo = false;
         this.config.format = "png";
@@ -110,7 +119,7 @@ module.exports = class PlotlyBlock {
             showlegend: true,
             title: {
                 text: "",
-                x:0.1,
+                x: 0.1,
                 font: {
                     family: 'Arial',
                     size: 20,
@@ -125,6 +134,7 @@ module.exports = class PlotlyBlock {
                 title: ""
             }
         }
+
         Plotly.newPlot(this.id, this.data, this.layout, this.config);
         this.setAutoResize();
     }
