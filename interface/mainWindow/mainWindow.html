@@ -48,9 +48,20 @@
         <div class="h-100 container" id="editing_menu">
             <div class="form-inline justify-content-between">
                 <h3 for="">Editor</h3>
-                <button id="editingMenuDeleteBtn" class="btn btn-secondary mb-2 h1">
-                    &times;
-                </button>
+                <div>
+                    <button id="editingMenuDeleteBtn" class="btn btn-danger mb-2 h1">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd"
+                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                        </svg>
+                    </button>
+                    <button id="editingMenuCloseBtn" class="btn btn-secondary mb-2 h1">
+                        &times;
+                    </button>
+                </div>
             </div>
 
             <div class="form-group standard_border">
@@ -181,13 +192,12 @@
                                                     <div class="col">
                                                         <small class="text-muted">Tamanho</small>
                                                         <select id="Plotly_markerWidth" class="form-control">
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
                                                             <option value="4">4</option>
-                                                            <option value="5">5</option>
                                                             <option value="6">6</option>
+                                                            <option value="8">8</option>
+                                                            <option value="10">10</option>
+                                                            <option value="12">12</option>
+                                                            <option value="14">14</option>
                                                         </select>
                                                     </div>
                                                     <div class="col">
@@ -237,31 +247,31 @@
                                     </div>
                                 </div>
                             </div>
-                            </form>
-                        </div>
-                        <div class="card">
-                            <div class="card-header btn" id="axes_option" data-toggle="collapse"
-                                data-target="#collapse_axes_option" aria-expanded="true"
-                                aria-controls="collapse_axes_option">
-                                <h6 class="mb-0">
-                                    Eixos
-                                </h6>
-                            </div>
-                            <form id="plotly_axes_form">
-                                <div id="collapse_axes_option" class="collapse" aria-labelledby="axes_option"
-                                    data-parent="#accordion">
-                                    <div class="card-body form-group">
-                                        <div class="form-group">
-                                            <small class="text-muted">Eixo x</small>
-                                            <input class="form-control" id="Plotly_xaxis_title" type="text">
-                                        </div>
-                                        <div class="form-group">
-                                            <small class="text-muted">Eixo y</small>
-                                            <input class="form-control" id="Plotly_yaxis_title" type="text">
+
+                            <div class="card">
+                                <div class="card-header btn" id="axes_option" data-toggle="collapse"
+                                    data-target="#collapse_axes_option" aria-expanded="true"
+                                    aria-controls="collapse_axes_option">
+                                    <h6 class="mb-0">
+                                        Eixos
+                                    </h6>
+                                </div>
+                                <form id="plotly_axes_form">
+                                    <div id="collapse_axes_option" class="collapse" aria-labelledby="axes_option"
+                                        data-parent="#accordion">
+                                        <div class="card-body form-group">
+                                            <div class="form-group">
+                                                <small class="text-muted">Eixo x</small>
+                                                <input class="form-control" id="Plotly_xaxis_title" type="text">
+                                            </div>
+                                            <div class="form-group">
+                                                <small class="text-muted">Eixo y</small>
+                                                <input class="form-control" id="Plotly_yaxis_title" type="text">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
