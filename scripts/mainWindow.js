@@ -72,14 +72,13 @@ class MainWindow {
 
         this.changeTitle(name, context)
 
-
-
         let dashBoardObj = fs.readFileSync(`dashBoards/${name}/${name}.json`);
         dashBoardObj = JSON.parse(dashBoardObj);
+
         this.currentDashBoard = new DashBoard()
+
         if (context === "edit_show") {
             this.currentDashBoard.editing = true
-            console.log("editando")
         } else {
             this.currentDashBoard.editing = false
         }
@@ -90,6 +89,7 @@ class MainWindow {
 
 
         console.log(this.currentDashBoard)
+
         mainwindow.dispatchEvent('ContextChange', {
             "context": context
         })
@@ -98,15 +98,19 @@ class MainWindow {
 
 
     deleteCurrentDashBoard() {
+
         let answer = confirm("Are you shure?");
-        this.currentDashBoard.clear();
+
         if (answer === true) {
+
             fs.rmdirSync(`dashBoards/${this.currentDashBoard.name}`, {
                 recursive: true
             });
+
             mainwindow.dispatchEvent('ContextChange', {
                 "context": "all_show"
             })
+
             this.currentDashBoard.clear();
         }
 
@@ -114,9 +118,11 @@ class MainWindow {
 
     saveCurrentDashBoard() {
         let answer = confirm("Save changes?");
+
         if (answer === true) {
 
             let serializedData = [];
+
             this.currentDashBoard.gridStack.engine.nodes.forEach((node) => {
                 serializedData.push({
                     id: node.id,
@@ -126,6 +132,7 @@ class MainWindow {
                     height: node.height
                 });
             });
+
             serializedData.forEach(widget => {
                 for (let i = 0; i < this.currentDashBoard.blocks.length; i++) {
                     if (this.currentDashBoard.blocks[i].id == widget.id) {
@@ -137,8 +144,12 @@ class MainWindow {
                     }
                 }
             });
+
+
             let name = this.currentDashBoard.name
             this.currentDashBoard.gridStack = {};
+
+            
             fs.writeFileSync(`dashBoards/${name}/${name}.json`, JSON.stringify(this.currentDashBoard, null, "\t"));
 
             mainwindow.dispatchEvent('LoadNewDashBoard', {
