@@ -1,5 +1,4 @@
 const Plotly = require('plotly.js');
-const EditingMenu = require('../EditingMenu');
 
 
 module.exports = class PlotlyBlock {
@@ -12,14 +11,12 @@ module.exports = class PlotlyBlock {
         this.plotConfigs = {}
     }
     loadFromJson(PlotlyJson) {
-        console.log("inicializando " + this.id, this.data);
         this.id = PlotlyJson.id;
         this.data = PlotlyJson.data;
         this.layout = PlotlyJson.layout;
         this.config = PlotlyJson.config;
         this.series = PlotlyJson.series;
         this.plotConfigs = PlotlyJson.plotConfigs;
-        console.log("inicializando " + this.id, this.data);
     }
     getData() {
         this.plotConfigs = {
@@ -109,7 +106,6 @@ module.exports = class PlotlyBlock {
         Plotly.deleteTraces(this.id, i)
     }
     init(editing) {
-        console.log("inicializando " + this.id, this.data);
         this.config.staticPlot = editing;
         this.config.responsive = true;
         this.config.displaylogo = false;
