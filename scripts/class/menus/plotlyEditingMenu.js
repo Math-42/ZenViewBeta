@@ -74,9 +74,17 @@ module.exports = class PlotlyEditingMenu {
         this.plot = plot;
         console.log(this.plot)
         console.log("carregando menu de plot 2d")
+
         this.loadMenu(this.plot.type)
     }
     loadMenu(selection){
+        
+        let allMenus = document.getElementsByClassName("subMenuBlock")
+        for(let i=0, j= allMenus.length; i<j;i++){
+            console.log(allMenus[i])
+            allMenus[i].style.display = "none";
+        }
+
         console.log(selection)
         if(selection == 1){
             this.currentMenu = this.lineChartMenu
