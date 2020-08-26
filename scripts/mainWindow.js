@@ -1,4 +1,4 @@
-/*
+/**
     Esta é a classe principal para o programa funcionar, aqui estão contidos todos os elementos 
     renderizados na tela, como o menu lateral, as abas, botões e etc
 */
@@ -11,7 +11,6 @@ const classes = require('../../scripts/classes.js')
 const SideMenu = require('../../scripts/sideMenu.js')
 const popUpMenu = require('../../scripts/popup.js')
 const DashBoard = classes.DashBoard
-const Input = classes.Input
 const EditingMenu = classes.EditingMenu
 
 class MainWindow {
@@ -23,7 +22,7 @@ class MainWindow {
         this.popUpMenu = new popUpMenu();
         this.EditingMenu = new EditingMenu();
     }
-    /*
+    /**
         Função para guardar todas funções que devem ser carregadas apos o inicio do programa, como ler os botoes, menus
         e renderiza-los
         @params onLoadFunction funcão a ser guardada
@@ -31,7 +30,7 @@ class MainWindow {
     addOnLoadFunction(onLoadFunction) {
         this.onLoadFunctions.push(onLoadFunction);
     }
-    /*
+    /**
         Função que indica que o contexto da aba foi alterado, as abas mostram opções diferentes comforme os contextos que 
         estão abertos, como por exemplo, leitura, edição e nova aba 
     */
@@ -65,11 +64,10 @@ class MainWindow {
         }
         document.getElementById("title").innerHTML = text + newTitle;
     }
-    /*
+    /**
 
     */
     openNewDashBoard(name, context) {
-
         this.changeTitle(name, context)
 
         let dashBoardObj = fs.readFileSync(`dashBoards/${name}/${name}.json`);
@@ -151,14 +149,14 @@ class MainWindow {
 
             
             fs.writeFileSync(`dashBoards/${name}/${name}.json`, JSON.stringify(this.currentDashBoard, null, "\t"));
-
+            this.EditingMenu.close()
             mainwindow.dispatchEvent('LoadNewDashBoard', {
                 'name': name,
                 'context': 'start_show'
             })
         }
     }
-    /*
+    /**
         Função que carrega todos os eventos pre definidos, uma vez que os menus comunicam com a tela principal e entre
         se atraves de eventos
     */
@@ -205,7 +203,7 @@ class MainWindow {
         })
         console.log("Os eventos foram carregados")
     }
-    /*
+    /**
         Percorre todas a funções salvas anteriormente para agora poder executa-las
     */
     loadStorageFunctions() {
@@ -214,7 +212,7 @@ class MainWindow {
         })
         this.loadPage();
     }
-    /*
+    /**
         Lê os botões que estão no arquivo buttons.json e os carrega como componentes
     */
     loadButtons() {
@@ -235,7 +233,7 @@ class MainWindow {
         document.getElementById("side_tab_menu").innerHTML = htmlButtons
         console.log("Os botões foram carregados")
     }
-    /*
+    /**
         Carrega todas as opções do menu, do arquivo popupOptions.json
     */
     loadPopupOptions() {
@@ -259,7 +257,7 @@ class MainWindow {
         document.getElementById("optionTab").innerHTML = htmlPopupOptions
         console.log("As opções do menu foram carregadas")
     }
-    /*
+    /***
         Carrega todos os menus, do arquivo popupMenus.json, que por sua vez são arquivos de modulos em .js
         cada menu tem suas proprias funções dentro de se mesmo, assim como seu html e css
     */
@@ -277,7 +275,7 @@ class MainWindow {
         this.popUpMenu.setMenus(popupMenus);
         console.log("Os menus foram carregados")
     }
-    /*
+    /**
         Carrega a parte visual da pagina, e calcula o tempo de load, para mostrar a pagina principal apos 3 segundos no minimo
     */
     loadPage() {
@@ -299,7 +297,7 @@ class MainWindow {
         })
         console.log("Programa carregado completamente")
     }
-    /*
+    /**
         Função que deve ser chamada para comunicação entre modulos do programa
     */
     dispatchEvent(eventName, details) {
