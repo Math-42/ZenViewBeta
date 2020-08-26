@@ -8,6 +8,7 @@ module.exports = class PlotlyBlock {
         this.layout = (layout === undefined) ? {} : layout;
         this.config = (config === undefined) ? {} : config;
         this.series = [];
+        this.type;
         this.plotConfigs = {}
     }
     loadFromJson(PlotlyJson) {
@@ -16,46 +17,58 @@ module.exports = class PlotlyBlock {
         this.layout = PlotlyJson.layout;
         this.config = PlotlyJson.config;
         this.series = PlotlyJson.series;
+        this.type = PlotlyJson.type;
         this.plotConfigs = PlotlyJson.plotConfigs;
     }
     getData() {
         this.plotConfigs = {
-            title: this.layout.title.text,
-            format: this.config.format,
-            mode: this.config.mode,
-            showlegend: this.layout.showlegend,
-            series: this.series,
-            traces: this.data,
-            xaxis: {
-                title: this.layout.xaxis.title.text
+            utillites: {
+                type: this.config.type,
+                series: this.series,
             },
-            yaxis: {
-                title: this.layout.yaxis.title.text
-            }
-
+            config: {
+                format: this.config.format,
+            },
+            layout: {
+                title: {
+                    text: this.layout.title.text
+                },
+                showlegend: this.layout.showlegend,
+                xaxis: {
+                    title: this.layout.xaxis.title.text
+                },
+                yaxis: {
+                    title: this.layout.yaxis.title.text
+                }
+            },
+            data: this.data
         }
+        console.log(this.plotConfigs)
         return this.plotConfigs;
-    }
-    setId(id) {
-        this.id = id + "_plot";
-    }
-    getId() {
-        return this.id;
     }
     attData(newData) {
         let i = 0;
+        let found = false;
         for (i = 0; i < this.data.length; i++) {
             if (this.data[i].name === newData.name) {
+                found = true;
                 break;
             }
         };
-        Plotly.restyle(this.id, newData, i)
+        if (found) {
+            Plotly.restyle(this.id, newData, i)
+        }
     }
     attLayout(newLayout) {
         Plotly.relayout(this.id, newLayout);
     }
     attConfig(newConfig) {
         this.config = newConfig;
+    }
+    att(newSetup) {
+        this.attConfig(newSetup.config)
+        this.attLayout(newSetup.layout)
+        this.attData(newSetup.data)
     }
     setAutoResize() {
         let widget = document.getElementById(this.id).parentElement;
@@ -131,6 +144,11 @@ module.exports = class PlotlyBlock {
             }
         }
 
+        Plotly.newPlot(this.id, this.data, this.layout, this.config);
+        this.setAutoResize();
+    }
+    load(editing){
+        this.config.staticPlot = editing;
         Plotly.newPlot(this.id, this.data, this.layout, this.config);
         this.setAutoResize();
     }
