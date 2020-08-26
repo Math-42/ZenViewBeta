@@ -40,10 +40,12 @@ module.exports = class LineChartMenu {
         this.setOptions("Plotly_lineChart_series_yaxes_input", inputs, (input) => {
             return input.name
         })
-
-
-        this.setOptions("Plotly_lineChart_style_selectedSerie", data.data, (serie) => {
-            return serie.name;
+        document.getElementById('Plotly_lineChart_series_series_list').innerHTML = ""
+        document.getElementById('Plotly_lineChart_style_selectedSerie').innerHTML = ""
+        
+        data.data.forEach( serie =>{
+            console.log(serie)
+            this.addSerieList(serie);
         })
 
         this.attSeries()
@@ -60,7 +62,11 @@ module.exports = class LineChartMenu {
             }
         }
 
-        if (currentTrace.mode === "lines+markers") {
+        if(currentTrace === undefined){
+            return;
+        }
+
+        if (currentTrace.mode === "lines+markers" || currentTrace.mode === undefined) {
             data.showMarkers = true;
             data.showLines = true;
         } else if (currentTrace.mode === "markers") {
@@ -85,10 +91,8 @@ module.exports = class LineChartMenu {
         document.getElementById("Plotly_lineChart_style_showLines").checked = data.showLines
         document.getElementById("Plotly_lineChart_style_showMarkers").checked = data.showMarkers
 
-
         this.showLines();
         this.showMarkers();
-
 
     }
     setSelectedOption(selectId, selectedOption) {
@@ -122,7 +126,6 @@ module.exports = class LineChartMenu {
             "Plotly_lineChart_series_yaxes_input",
             "Plotly_lineChart_style_selectedSerie"
         ]
-        let hash = "";
         for (let i = 0; i < data.length; i++) {
             let e = data[i];
             if (e.type !== "checkbox") {
@@ -131,15 +134,8 @@ module.exports = class LineChartMenu {
                 value = e.checked
             }
             formData[String(e.id).replace("Plotly_lineChart_", "")] = value;
-            if (!ignore.includes(e.id)) {
-                hash += e.id + value
-            }
         }
-        if (hash !== this.last) {
-            this.last = hash;
-            this.sendData(formData);
-        }
-        return -1;
+        this.sendData(formData);
     }
     sendData(data) {
         let mode;
@@ -191,18 +187,17 @@ module.exports = class LineChartMenu {
     }
     addSerie() {
         let formData = {
-            "name_trace": document.getElementById("Plotly_lineChart_series_serieName").value,
+            "name": document.getElementById("Plotly_lineChart_series_serieName").value,
             "x": document.getElementById("Plotly_lineChart_series_xaxes_input").value,
             "y": document.getElementById("Plotly_lineChart_series_yaxes_input").value
         }
 
-        console.log(formData)
-        if (formData.name_trace === undefined || formData.name_trace === "") {
+        if (formData.name === undefined || formData.name === "") {
             return;
         }
 
         for (let i = 0; i < this.plot.data.length; i++) {
-            if (this.plot.data[i].name === formData.name_trace) {
+            if (this.plot.data[i].name === formData.name) {
                 return;
             }
         };
@@ -210,9 +205,10 @@ module.exports = class LineChartMenu {
         let newcolor = String([this.colors[this.colorCount]])
 
         this.plot.addSerie({
-            name: formData.name_trace,
+            name: formData.name,
             x: formData.x,
             y: formData.y,
+            mode: "lines+markers",
             line: {
                 width: "3",
                 color: newcolor,
@@ -226,27 +222,28 @@ module.exports = class LineChartMenu {
         })
 
         this.colorCount = (this.colorCount + 1) % 6;
-        console.log("novo valor" + this.colorCount);
-
+        this.addSerieList(formData);
+        this.attSeries()
+    }
+    addSerieList(data) {
         let newOption = document.createElement('option');
-        newOption.textContent = formData.name_trace;
-        newOption.value = formData.name_trace;
+        newOption.textContent = data.name;
+        newOption.value = data.name;
         document.getElementById('Plotly_lineChart_style_selectedSerie').appendChild(newOption);
         document.getElementById('Plotly_lineChart_series_serieName').value = "";
         let newSerie = document.createElement('div');
         newSerie.className = " input-group mb-1";
-        newSerie.id = `Plotly_serie_${formData.name_trace}`
-        newSerie.innerHTML = `  <input type="text" class="form-control" placeholder="${formData.name_trace}" readonly>
+        newSerie.id = `Plotly_serie_${data.name}`
+        newSerie.innerHTML = `  <input type="text" class="form-control" placeholder="${data.name}" readonly>
                                 <div class="input-group-append">
-                                    <button id="Plotly_rmv_${formData.name_trace}" class="btn btn-secondary"
+                                    <button id="Plotly_rmv_${data.name}" class="btn btn-secondary"
                                         type="button">&times;</button>
                                 </div>`
         document.getElementById('Plotly_lineChart_series_series_list').appendChild(newSerie);
 
-        document.getElementById(`Plotly_rmv_${formData.name_trace}`).onclick = () => {
-            console.log("Série removida")
-            document.getElementById(`Plotly_serie_${formData.name_trace}`).remove();
-            this.plot.removeSerie(`${formData.name_trace}`);
+        document.getElementById(`Plotly_rmv_${data.name}`).onclick = () => {
+            document.getElementById(`Plotly_serie_${data.name}`).remove();
+            this.plot.removeSerie(`${data.name}`);
         }
     }
     showMarkers() {
@@ -292,6 +289,8 @@ module.exports = class LineChartMenu {
     }
     load(plot) {
         this.plot = plot;
+        document.getElementById("lineChart_subMenuBlock").reset();
+        
         this.setData();
         document.getElementById("lineChart_subMenuBlock").style.display = "block"
     }
