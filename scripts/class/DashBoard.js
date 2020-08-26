@@ -59,7 +59,7 @@ module.exports = class DashBoard {
 
         this.blocks.forEach(block => {
             this.gridStack.addWidget(block.plotHtmlComponent(), block);
-            block.init(this.editing);
+            block.load(this.editing);
         })
     }
     clear() {

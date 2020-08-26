@@ -26,13 +26,24 @@ module.exports = class Block {
         if (this.plotLib === "Plotly") {
             this.plot = new PlotlyBlock(this.id);
             this.plot.loadFromJson(BlockJson.plot);
-            console.log(this.plot)
         }
     }
     init(editing){
         this.editing = editing;
-        console.log("inicializando bloco "+this.id, "editando :"+this.editing);
+        console.log("inicializando bloco "+this.id);
         this.plot.init(this.editing);
+        if(this.editing){
+            document.getElementById(this.id).ondblclick = () => {
+                mainwindow.dispatchEvent('openEditingMenu', {
+                    "block": this
+                });
+            };
+        }
+    }
+    load(editing){
+        this.editing = editing;
+        console.log("Carregando bloco "+this.id);
+        this.plot.load(this.editing);
         if(this.editing){
             document.getElementById(this.id).ondblclick = () => {
                 mainwindow.dispatchEvent('openEditingMenu', {
