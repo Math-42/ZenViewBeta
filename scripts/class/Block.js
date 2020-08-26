@@ -1,6 +1,6 @@
 
 const ElementResize = require('javascript-detect-element-resize');
-const PlotlyBlock = require('./blocks/plotlyBlock');
+const lineChartPlotlyBlock = require('./blocks/lineChartPlotlyBlock');
 module.exports = class Block {
     constructor(id,plotLib) {
         this.plotLib = plotLib;
@@ -11,7 +11,7 @@ module.exports = class Block {
         this.y;
         this.editing = true;
         if (this.plotLib === "Plotly") {
-            this.plot = new PlotlyBlock(this.id);
+            this.plot = new lineChartPlotlyBlock(this.id);
         }else{
             this.plot = {}
         }
@@ -24,7 +24,7 @@ module.exports = class Block {
         this.plotLib = BlockJson.plotLib;
         this.id = BlockJson.id
         if (this.plotLib === "Plotly") {
-            this.plot = new PlotlyBlock(this.id);
+            this.plot = new lineChartPlotlyBlock(this.id);
             this.plot.loadFromJson(BlockJson.plot);
         }
     }
