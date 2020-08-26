@@ -1,0 +1,303 @@
+[
+    {
+        "name": "menu_geral_plot",
+        "title": "Geral",
+        "id": "Plotly_lineChart_geral",
+        "fields": [
+            {
+                "type": "label",
+                "text": "Título"
+            },
+            {
+                "type": "textInput",
+                "title": "Nome",
+                "id": "title"
+            },
+            {
+                "type": "label",
+                "text": "Eixo x"
+            },
+            {
+                "type": "textInput",
+                "title": "Título",
+                "id": "xaxestitle"
+            },
+            {
+                "type": "label",
+                "text": "Eixo y"
+            },
+            {
+                "type": "textInput",
+                "title": "Título",
+                "id": "yaxestitle"
+            },
+            {
+                "type": "checkboxInput",
+                "text": "Mostrar legenda",
+                "id": "showlegend",
+                "checked": true
+            }
+        ]
+    },
+    {
+        "name": "menu_series_plot",
+        "title": "Séries",
+        "id": "Plotly_lineChart_series",
+        "fields": [
+            {
+                "type": "textAndButtonInput",
+                "title": "Nome",
+                "inputId": "serieName",
+                "buttonText": "Add",
+                "buttonId": "addSerieBtn"
+            },
+            {
+                "type": "selectAndLabelInput",
+                "title": "X",
+                "id": "xaxes_input"
+            },
+            {
+                "type": "selectAndLabelInput",
+                "title": "Y",
+                "id": "yaxes_input"
+            },
+            {
+                "type": "div",
+                "id": "series_list"
+            }
+        ]
+    },
+    {
+        "name": "menu_style_series_plot",
+        "title": "Estilo",
+        "id": "Plotly_lineChart_style",
+        "fields": [
+            {
+                "type": "selectInput",
+                "title": "Série",
+                "id": "selectedSerie"
+            },
+            {
+                "type": "checkboxInput",
+                "text": "Pontos",
+                "id": "showMarkers",
+                "checked": true
+            },
+            {
+                "type": "div",
+                "id": "markersOptions",
+                "fields": [
+                    {
+                        "type": "formRow",
+                        "col1": {
+                            "fields": [
+                                {
+                                    "type": "selectInput",
+                                    "title": "Tamanho",
+                                    "id": "marker_width",
+                                    "options": [
+                                        {
+                                            "text": 4
+                                        },
+                                        {
+                                            "text": 6
+                                        },
+                                        {
+                                            "text": 8
+                                        },
+                                        {
+                                            "text": 10
+                                        },
+                                        {
+                                            "text": 12
+                                        },
+                                        {
+                                            "text": 14
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "col2": {
+                            "fields": [
+                                {
+                                    "type": "colorPicker",
+                                    "title": "Cor",
+                                    "id": "marker_color",
+                                    "options": [
+                                        {
+                                            "text": "#ff0000"
+                                        },
+                                        {
+                                            "text": "#0000ff"
+                                        },
+                                        {
+                                            "text": "#ffa500"
+                                        },
+                                        {
+                                            "text": "#800080"
+                                        },
+                                        {
+                                            "text": "#008000"
+                                        },
+                                        {
+                                            "text": "#4b0082"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "checkboxInput",
+                "text": "Linha",
+                "id": "showLines",
+                "checked": true
+            },
+            {
+                "type": "div",
+                "id": "linesOptions",
+                "fields": [
+                    {
+                        "type": "formRow",
+                        "col1": {
+                            "fields": [
+                                {
+                                    "type": "selectInput",
+                                    "title": "Tamanho",
+                                    "id": "line_width",
+                                    "options": [
+                                        {
+                                            "text": 1
+                                        },
+                                        {
+                                            "text": 2
+                                        },
+                                        {
+                                            "text": 3
+                                        },
+                                        {
+                                            "text": 4
+                                        },
+                                        {
+                                            "text": 5
+                                        },
+                                        {
+                                            "text": 6
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "col2": {
+                            "fields": [
+                                {
+                                    "type": "colorPicker",
+                                    "title": "Cor",
+                                    "id": "line_color",
+                                    "options": [
+                                        {
+                                            "text": "#ff0000"
+                                        },
+                                        {
+                                            "text": "#0000ff"
+                                        },
+                                        {
+                                            "text": "#ffa500"
+                                        },
+                                        {
+                                            "text": "#800080"
+                                        },
+                                        {
+                                            "text": "#008000"
+                                        },
+                                        {
+                                            "text": "#4b0082"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "formRow",
+                        "col1": {
+                            "fields": [
+                                {
+                                    "type": "selectInput",
+                                    "title": "Tracejado",
+                                    "id": "line_dash",
+                                    "options": [
+                                        {
+                                            "text": "Sólido",
+                                            "value": "solid"
+                                        },
+                                        {
+                                            "text": "Pontilhado",
+                                            "value": "dot"
+                                        },
+                                        {
+                                            "text": "Tracejado",
+                                            "value": "dash"
+                                        },
+                                        {
+                                            "text": "Travessão",
+                                            "value": "longdash"
+                                        },
+                                        {
+                                            "text": "Traço e ponto",
+                                            "type": "dashdot"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "col2": {
+                            "fields": [
+                                {
+                                    "type": "selectInput",
+                                    "title": "Interpolação",
+                                    "id": "line_shape",
+                                    "options": [
+                                        {
+                                            "text": "Linear",
+                                            "value": "linear"
+                                        },
+                                        {
+                                            "text": "Suave",
+                                            "value": "spline"
+                                        },
+                                        {
+                                            "text": "Degraus 1",
+                                            "value": "hv"
+                                        },
+                                        {
+                                            "text": "Degraus 2",
+                                            "value": "vh"
+                                        },
+                                        {
+                                            "text": "Degraus 3",
+                                            "value": "hvh"
+                                        },
+                                        {
+                                            "text": "Degraus 4",
+                                            "value": "vhv"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "menu_axes_config_plot",
+        "title": "Eixos",
+        "id": "Plotly_lineChart_axes",
+        "fields": []
+    }
+]
