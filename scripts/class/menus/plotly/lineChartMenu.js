@@ -17,11 +17,11 @@ module.exports = class LineChartMenu {
             menuBlock.id = "lineChart_subMenuBlock"
             let jsonMenu = require('./setupFiles/lineChartSetup.json')
             jsonMenu.forEach(card => {
-                menuBlock.appendChild(MenuBuilder.build(card));
+                menuBlock.appendChild(MenuBuilder.build(card, "Plotly_lineChart"));
             });
             document.getElementById('Plotly_subOptions').appendChild(menuBlock);
             this.isInitialized = true;
-            this.setEvents()
+            this.setEvents(document.querySelectorAll('[Plotly_lineChart_validListener]'))
         }
     }
     setData() {
@@ -69,10 +69,10 @@ module.exports = class LineChartMenu {
         } else if (currentTrace.mode === "lines") {
             data.showLines = true;
             data.showMarkers = false;
-            if(currentTrace.line.width == 0){
+            if (currentTrace.line.width == 0) {
                 data.showLines = false;
             }
-        } 
+        }
 
         this.setSelectedOption("Plotly_lineChart_style_line_color", currentTrace.line.color)
         document.getElementById("Plotly_lineChart_style_line_color").style.backgroundColor = currentTrace.line.color
@@ -84,12 +84,12 @@ module.exports = class LineChartMenu {
         this.setSelectedOption("Plotly_lineChart_style_marker_width", currentTrace.marker.size)
         document.getElementById("Plotly_lineChart_style_showLines").checked = data.showLines
         document.getElementById("Plotly_lineChart_style_showMarkers").checked = data.showMarkers
-        
+
 
         this.showLines();
         this.showMarkers();
 
-        this.getData(document.getElementById('lineChart_subMenuBlock').elements);
+
     }
     setSelectedOption(selectId, selectedOption) {
         let select = document.getElementById(selectId)
@@ -103,7 +103,7 @@ module.exports = class LineChartMenu {
     setOptions(selectId, options, func) {
         let select = document.getElementById(selectId);
         let newOption
-        for (let i = select.options.length -1; i >= 0; i--) {
+        for (let i = select.options.length - 1; i >= 0; i--) {
             select.remove(i);
         }
         options.forEach(option => {
@@ -189,6 +189,66 @@ module.exports = class LineChartMenu {
         console.log("dados enviados para o plot")
         this.plot.att(newSetup)
     }
+    addSerie() {
+        let formData = {
+            "name_trace": document.getElementById("Plotly_lineChart_series_serieName").value,
+            "x": document.getElementById("Plotly_lineChart_series_xaxes_input").value,
+            "y": document.getElementById("Plotly_lineChart_series_yaxes_input").value
+        }
+
+        console.log(formData)
+        if (formData.name_trace === undefined || formData.name_trace === "") {
+            return;
+        }
+
+        for (let i = 0; i < this.plot.data.length; i++) {
+            if (this.plot.data[i].name === formData.name_trace) {
+                return;
+            }
+        };
+
+        let newcolor = String([this.colors[this.colorCount]])
+
+        this.plot.addSerie({
+            name: formData.name_trace,
+            x: formData.x,
+            y: formData.y,
+            line: {
+                width: "3",
+                color: newcolor,
+                dash: "solid",
+                shape: "linear"
+            },
+            marker: {
+                size: "5",
+                color: newcolor
+            }
+        })
+
+        this.colorCount = (this.colorCount + 1) % 6;
+        console.log("novo valor" + this.colorCount);
+
+        let newOption = document.createElement('option');
+        newOption.textContent = formData.name_trace;
+        newOption.value = formData.name_trace;
+        document.getElementById('Plotly_lineChart_style_selectedSerie').appendChild(newOption);
+        document.getElementById('Plotly_lineChart_series_serieName').value = "";
+        let newSerie = document.createElement('div');
+        newSerie.className = " input-group mb-1";
+        newSerie.id = `Plotly_serie_${formData.name_trace}`
+        newSerie.innerHTML = `  <input type="text" class="form-control" placeholder="${formData.name_trace}" readonly>
+                                <div class="input-group-append">
+                                    <button id="Plotly_rmv_${formData.name_trace}" class="btn btn-secondary"
+                                        type="button">&times;</button>
+                                </div>`
+        document.getElementById('Plotly_lineChart_series_series_list').appendChild(newSerie);
+
+        document.getElementById(`Plotly_rmv_${formData.name_trace}`).onclick = () => {
+            console.log("Série removida")
+            document.getElementById(`Plotly_serie_${formData.name_trace}`).remove();
+            this.plot.removeSerie(`${formData.name_trace}`);
+        }
+    }
     showMarkers() {
         if (!document.getElementById("Plotly_lineChart_style_showMarkers").checked) {
             document.getElementById("Plotly_lineChart_style_markersOptions").style.display = "none"
@@ -203,13 +263,19 @@ module.exports = class LineChartMenu {
             document.getElementById("Plotly_lineChart_style_linesOptions").style.display = "block"
         }
     }
-    setEvents() {
+    setEvents(fields) {
+        fields.forEach(field => {
+            field.addEventListener("input", () => {
+                this.getData(document.getElementById('lineChart_subMenuBlock').elements)
+            });
+        })
+        /*
         document.getElementById("lineChart_subMenuBlock").addEventListener("input", () => {
             this.getData(document.getElementById('lineChart_subMenuBlock').elements)
-        });
+        });*/
 
         document.getElementById("Plotly_lineChart_series_addSerieBtn").onclick = () => {
-            this.addSerie(document.getElementById('plotly_series_form').elements)
+            this.addSerie()
         }
 
         document.getElementById("Plotly_lineChart_style_showMarkers").onclick = () => {
