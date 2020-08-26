@@ -1,46 +1,55 @@
 module.exports = class MenuBuilder {
     stat
-    static build(menu) {
-        let component = this.builder(menu,menu.id)
+    static build(menu,menuGroupId) {
+        let component = this.builder(menu,menu.id,menuGroupId)
         let card = this.cardBuilder(menu.name, menu.title, menu.id, component)
         return card
     }
-    static builder(menu,id) {
-        let component = []
+    static builder(menu,id,menuGroupId) {
+        let components = []
+        let component
         menu.fields.forEach(field => {
             switch (field.type) {
                 case "textInput":
-                    component.push(this.textInputBuilder(field,id))
+                    component = (this.textInputBuilder(field,id))
                     break
                 case "checkboxInput":
-                    component.push(this.checkBoxBuilder(field,id))
+                    component = (this.checkBoxBuilder(field,id))
                     break
                 case "selectInput":
-                    component.push(this.selectionBuilder(field,id))
+                    component = (this.selectionBuilder(field,id))
                     break
                 case "textAndButtonInput":
-                    component.push(this.textAndButtonBuilder(field,id))
+                    component = (this.textAndButtonBuilder(field,id))
                     break
                 case "selectAndLabelInput":
-                    component.push(this.selectAndLabelBuilder(field,id))
+                    component = (this.selectAndLabelBuilder(field,id))
                     break
                 case "div":
-                    component.push(this.divBuilder(field,id))
+                    component = (this.divBuilder(field,id))
                     break
                 case "label":
-                    component.push(this.labelBuilder(field,id))
+                    component = (this.labelBuilder(field,id))
                     break
                 case "formRow":
-                    component.push(this.formRowBuilder(field,id))
+                    component = (this.formRowBuilder(field,id))
                     break
                 case "colorPicker":
-                    component.push(this.colorPickerBuilder(field,id))
+                    component = (this.colorPickerBuilder(field,id))
                     break
                 default:
                     break
             }
+            this.setLisener(component,field,menuGroupId)
+            components.push(component)
         })
-        return component
+        return components
+    }
+    static setLisener(element,elementObj,id){
+        elementObj.listener = (elementObj.listener === undefined)? true: elementObj.listener;
+        if(elementObj.listener !== false){
+            element.setAttribute(id+"_validListener", true );
+        }
     }
     static divBuilder(divObj, id) {
 
