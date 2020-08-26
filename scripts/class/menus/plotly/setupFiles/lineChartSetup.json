@@ -49,16 +49,19 @@
                 "title": "Nome",
                 "inputId": "serieName",
                 "buttonText": "Add",
+                "listener": false,
                 "buttonId": "addSerieBtn"
             },
             {
                 "type": "selectAndLabelInput",
                 "title": "X",
+                "listener": false,
                 "id": "xaxes_input"
             },
             {
                 "type": "selectAndLabelInput",
                 "title": "Y",
+                "listener": false,
                 "id": "yaxes_input"
             },
             {
@@ -75,6 +78,7 @@
             {
                 "type": "selectInput",
                 "title": "Série",
+                "listener": false,
                 "id": "selectedSerie"
             },
             {
