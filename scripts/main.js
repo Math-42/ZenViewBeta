@@ -7,6 +7,7 @@ const path = require("path")
 const url = require("url")
 const ipc = electron.ipcMain
 
+const debugMode = true;
 let initialWindow
 let mainWindow
 
@@ -25,12 +26,12 @@ let initialWindowparams = {
 let mainWindowparams = {
     title: 'ZenView',
     path: '../interface/mainWindow/mainWindow.html',
-    show: false,
+    show: debugMode,
     webPreferences: {
         nodeIntegration: true,
         webviewTag: true
     },
-    openDevTools: true
+    openDevTools: debugMode
 }
 //cria uma nova janela a partir dos parametros dados
 function createWindow(params) {
