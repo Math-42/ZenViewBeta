@@ -42,8 +42,8 @@ module.exports = class LineChartMenu {
         })
         document.getElementById('Plotly_lineChart_series_series_list').innerHTML = ""
         document.getElementById('Plotly_lineChart_style_selectedSerie').innerHTML = ""
-        
-        data.data.forEach( serie =>{
+
+        data.data.forEach(serie => {
             console.log(serie)
             this.addSerieList(serie);
         })
@@ -62,7 +62,7 @@ module.exports = class LineChartMenu {
             }
         }
 
-        if(currentTrace === undefined){
+        if (currentTrace === undefined) {
             return;
         }
 
@@ -287,10 +287,19 @@ module.exports = class LineChartMenu {
             this.attSeries()
         }
     }
+    reset() {
+        document.getElementById("lineChart_subMenuBlock").reset();
+
+        let inputs = document.querySelectorAll("input[type='checkbox']");
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].checked = true;
+        }
+    }
     load(plot) {
         this.plot = plot;
-        document.getElementById("lineChart_subMenuBlock").reset();
-        
+
+        this.reset();
+
         this.setData();
         document.getElementById("lineChart_subMenuBlock").style.display = "block"
     }
