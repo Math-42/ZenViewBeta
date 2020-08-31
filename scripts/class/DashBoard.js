@@ -49,9 +49,9 @@ module.exports = class DashBoard {
 
         });
 
-        if(this.editing){
+        if (this.editing) {
             this.gridStack.enable('.grid-stack-item', true);
-        }else{
+        } else {
             this.gridStack.disable('.grid-stack-item', false);
         }
 
@@ -76,7 +76,10 @@ module.exports = class DashBoard {
         }
     }
     addNewWidget(newBlock) {
-        newBlock = (newBlock === undefined) ? new Block(this.ids++, "Plotly") : newBlock;
+        newBlock = (newBlock === undefined) ? new Block(this.ids++, {
+            main: "Plotly",
+            sub: "lineChart"
+        }) : newBlock;
         newBlock.height = (newBlock.height === undefined) ? 3 : newBlock.height;
         newBlock.width = (newBlock.width === undefined) ? 4 : newBlock.width;
         this.blocks.push(newBlock);
