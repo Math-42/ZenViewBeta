@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "main": "scripts/main.js",
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.52",
-    "@electron-forge/maker-deb": "^6.0.0-beta.52",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.52",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.52",
-    "@electron-forge/maker-zip": "^6.0.0-beta.52",
-    "electron": "^9.0.3"
+    "@electron-forge/cli": "^6.0.0-beta.53",
+    "@electron-forge/maker-deb": "^6.0.0-beta.53",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.53",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.53",
+    "@electron-forge/maker-zip": "^6.0.0-beta.53",
+    "electron": "^10.1.1"
   },
   "scripts": {
     "start": "electron-forge start",
@@ -17,10 +17,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^4.5.0",
+    "bootstrap": "^4.5.2",
     "electron-squirrel-startup": "^1.0.0",
     "electron-tabs": "^0.15.0",
-    "gridstack": "^2.0.0-rc",
+    "gridstack": "^2.0.0-rc2",
     "javascript-detect-element-resize": "^0.5.3",
     "jquery": "^3.5.1",
     "plotly.js": "^1.54.7",
