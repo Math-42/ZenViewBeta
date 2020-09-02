@@ -1,6 +1,7 @@
 /**
     Esta é a classe principal para o programa funcionar, aqui estão contidos todos os elementos 
     renderizados na tela, como o menu lateral, as abas, botões e etc
+    {@link https://github.com/Math-42/ZenView}
 */
 
 
@@ -25,7 +26,7 @@ class MainWindow {
     /**
         Função para guardar todas funções que devem ser carregadas apos o inicio do programa, como ler os botoes, menus
         e renderiza-los
-        @params onLoadFunction funcão a ser guardada
+        @param {function} onLoadFunction funcão a ser executada
     */
     addOnLoadFunction(onLoadFunction) {
         this.onLoadFunctions.push(onLoadFunction);
@@ -33,6 +34,7 @@ class MainWindow {
     /**
         Função que indica que o contexto da aba foi alterado, as abas mostram opções diferentes comforme os contextos que 
         estão abertos, como por exemplo, leitura, edição e nova aba 
+        @param {string} newContext nome do novo contexto
     */
     contextChangeStyle(newContext) {
         //pega todos elementos que variam conforme o contexto
@@ -51,6 +53,11 @@ class MainWindow {
             }
         }
     }
+    /**
+     * Seta o novo título de acordo com o nome do dashboard e o contexto
+     * @param {string} newTitle novo título da tela
+     * @param {string} context novo contexto
+     */
     changeTitle(newTitle, context) {
         let text;
         if (context === "all_show") {
@@ -65,8 +72,10 @@ class MainWindow {
         document.getElementById("title").innerHTML = text + newTitle;
     }
     /**
-
-    */
+     * Abre um novo dashboard de acordo com um contexto dado, edição ou leitura
+     * @param {string} name nome do dashboard a ser aberto
+     * @param {string} context contexto em que o dashboard deve ser aberto
+     */
     openNewDashBoard(name, context) {
         this.changeTitle(name, context)
 
@@ -93,8 +102,9 @@ class MainWindow {
         })
 
     }
-
-
+    /**
+     * Deleta o dashboard que está aberto
+     */
     deleteCurrentDashBoard() {
 
         let answer = confirm("Are you shure?");
@@ -113,7 +123,9 @@ class MainWindow {
         }
 
     }
-
+    /**
+     * Salva o dashboard que está aberto
+     */
     saveCurrentDashBoard() {
         let answer = confirm("Save changes?");
 
@@ -147,7 +159,7 @@ class MainWindow {
             let name = this.currentDashBoard.name
             this.currentDashBoard.gridStack = {};
 
-            
+
             fs.writeFileSync(`dashBoards/${name}/${name}.json`, JSON.stringify(this.currentDashBoard, null, "\t"));
             this.EditingMenu.close()
             mainwindow.dispatchEvent('LoadNewDashBoard', {
@@ -277,6 +289,7 @@ class MainWindow {
     }
     /**
         Carrega a parte visual da pagina, e calcula o tempo de load, para mostrar a pagina principal apos 3 segundos no minimo
+        @
     */
     loadPage() {
         var duracao = Date.now() //pega o horario atual
@@ -299,12 +312,16 @@ class MainWindow {
     }
     /**
         Função que deve ser chamada para comunicação entre modulos do programa
+        @param {string} eventName nome do evento a ser disparado
+        @param {object} details detalhes que são enviados junto com o evento, no caso qualquer tipo de dado
     */
     dispatchEvent(eventName, details) {
-        console.log(eventName, details)
+
         if (details === undefined) {
+            console.log(eventName)
             window.dispatchEvent(new Event(eventName));
         } else {
+            console.log(eventName, details)
             window.dispatchEvent(new CustomEvent(eventName, {
                 detail: details
             }));
