@@ -1,3 +1,6 @@
+/**
+ * Importa todos os menus popup e exporta em formato de lista, facilitando a uitlização no futuro
+ */
 const NewDashBoard = require('../interface/popupMenus/NewDashBoard')
 const DashBoardsList = require('../interface/popupMenus/DashBoardsList')
 const DashBoardsEdit = require('../interface/popupMenus/DashBoardsEdit')
