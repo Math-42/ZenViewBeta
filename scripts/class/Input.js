@@ -6,7 +6,7 @@ module.exports = class Input{
     getValue(){
         if(this.operation !== ""){
             try{
-                return eval(this.operation)
+                return eval(this.operation);
             }catch(ERROR){
                 return undefined;
             }
@@ -14,9 +14,9 @@ module.exports = class Input{
     }
     inputHtml(){
         let inputElement = document.createElement("div");
-        inputElement.id= `input_row_${this.name}`
-        let saveOption = (id) =>{return  `mainwindow.popUpMenu.menus['EditInputs'].saveInput('${id}')`}
-        let delOption = (id)=>{return `mainwindow.popUpMenu.menus['EditInputs'].deleteInput('${id}')`}
+        inputElement.id= `input_row_${this.name}`;
+        let saveOption = (id) =>{return  `mainwindow.popUpMenu.menus['EditInputs'].saveInput('${id}')`;};
+        let delOption = (id)=>{return `mainwindow.popUpMenu.menus['EditInputs'].deleteInput('${id}')`;};
         inputElement.innerHTML = `<div class="row">
                     <div class="col container" >
                         <div class="row w-100 justify-content-between">
@@ -35,4 +35,4 @@ module.exports = class Input{
                 </div><hr class="w-100" >`;
         return inputElement;
     }
-}
+};
