@@ -1,16 +1,14 @@
-const fs = require('fs')
-
 module.exports = class BlocksList{
     constructor(){
         this.blocks = [];
-        this.categorys = []
+        this.categorys = [];
     }
     blockHtmlComponent(block){
         let newBlockComponent = document.createElement("div");
         newBlockComponent.id = block.id;
-        newBlockComponent.className = "col-4 p-1"
+        newBlockComponent.className = "col-4 p-1";
         newBlockComponent.style.height =  "120px";
-        newBlockComponent.innerHTML = `<div style="background-color:blue" class="w-100 h-100">${block.category}</div>`
+        newBlockComponent.innerHTML = `<div style="background-color:blue" class="w-100 h-100">${block.category}</div>`;
         return newBlockComponent;
     }
     openNewPlot(plotConfig){
@@ -20,12 +18,12 @@ module.exports = class BlocksList{
         let newPlotBtnComponent = document.createElement("div");
         let onclickEvent = "mainwindow.popUpMenu.menus['BlocksList'].openNewPlot()";
         newPlotBtnComponent.id = "PlotBtnComponent";
-        newPlotBtnComponent.className = "col-4 p-1"
+        newPlotBtnComponent.className = "col-4 p-1";
         newPlotBtnComponent.style.height =  "120px";
         newPlotBtnComponent.innerHTML = `
         <div class="w-100 h-100">
             <input type="button" style="font-size:50px" onclick="${onclickEvent}" class="save_input_btn w-100 h-100" value=" + ">
-        </div>`
+        </div>`;
         
         return newPlotBtnComponent;
     }
@@ -44,7 +42,7 @@ module.exports = class BlocksList{
 
                 </div>
             </div>
-        `
+        `;
         return newComponent;
     }
     onLoadFunction(){
@@ -52,7 +50,7 @@ module.exports = class BlocksList{
         blockList.innerHTML = "<hr/>";
         this.categorys = [];
 
-        this.blocks = [{"category":2},{"category":2},{"category":2},{"category":1},{"category":2},{"category":3}]
+        this.blocks = [{"category":2},{"category":2},{"category":2},{"category":1},{"category":2},{"category":3}];
 
         this.categorys.push("New Plot");
         blockList.appendChild(this.categoryHtmlComponent("New Plot"));
@@ -72,6 +70,6 @@ module.exports = class BlocksList{
     htmlBuilder(){
         return  `<div class="tabcontent"  id="BlocksList" >
                     <div id="BlocksListContainer" class ="container"></div>
-                </div>`
+                </div>`;
     }
-}
+};
