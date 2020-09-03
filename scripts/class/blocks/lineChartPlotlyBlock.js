@@ -12,7 +12,6 @@ module.exports = class lineChartPlotlyBlock {
         this.plotConfigs = {};
     }
     loadFromJson(PlotlyJson) {
-        this.id = PlotlyJson.id;
         this.data = PlotlyJson.data;
         this.layout = PlotlyJson.layout;
         this.config = PlotlyJson.config;
