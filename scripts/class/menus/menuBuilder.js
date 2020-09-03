@@ -466,7 +466,24 @@ module.exports = class Menu {
         try {
             return element.value;
         } catch (error) {
-            throw ("Did't find the requested field: " + fieldIdentification);
+            throw ("Didn't find the requested field: " + fieldIdentification);
+        }
+    }
+    getFieldElement(fieldIdentification) {
+        let  element;
+        let attResult = this.getElementByAtt(fieldIdentification);
+        let idResult = document.getElementById(fieldIdentification);
+
+        if (attResult !== null) {
+            element = attResult;
+        } else {
+            element = idResult;
+        }
+        console.log(element);
+        try {
+            return element;
+        } catch (error) {
+            throw ("Didn't find the requested field: " + fieldIdentification);
         }
     }
     createResponseObj(pointer, path, value) {
