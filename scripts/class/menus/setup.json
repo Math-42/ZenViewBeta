@@ -1,0 +1,790 @@
+{
+    "type": "div",
+    "id": "editingMenuRoot",
+    "fields": [
+        {
+            "text": "Pacote",
+            "id": "packageSelectionMenu",
+            "type": "card",
+            "fields": [
+                {
+                    "type": "select",
+                    "text": "Selecione um pacote",
+                    "att": "packageSelector",
+                    "id": "packageSelector",
+                    "options": [
+                        {
+                            "text": "Plotly",
+                            "value": 1
+                        },
+                        {
+                            "text": "TODO Three.js",
+                            "value": 2
+                        },
+                        {
+                            "text": "TODO Google GPS",
+                            "value": 3
+                        },
+                        {
+                            "text": "TODO Apex Charts",
+                            "value": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "plotlyDiv",
+            "att": "plotly",
+            "type": "div",
+            "fields": [
+                {
+                    "text": "Configurações do pacote",
+                    "id": "plotlyMenu",
+                    "type": "card",
+                    "fields": [
+                        {
+                            "type": "select",
+                            "text": "Tipo de plot:",
+                            "id": "plotSelector",
+                            "options": [
+                                {
+                                    "text": "Linhas",
+                                    "value": "lineChart"
+                                },
+                                {
+                                    "text": "Tabela",
+                                    "value": "table"
+                                },
+                                {
+                                    "text": "Indicador",
+                                    "value": "indicator"
+                                },
+                                {
+                                    "text": "3D",
+                                    "value": "tridChart"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "select",
+                            "text": "Formato de exportação:",
+                            "id": "export",
+                            "options": [
+                                {
+                                    "text": "Png",
+                                    "value": "png"
+                                },
+                                {
+                                    "text": "Svg",
+                                    "value": "svg"
+                                },
+                                {
+                                    "text": "Jpeg",
+                                    "value": "jpeg"
+                                },
+                                {
+                                    "text": "Webp",
+                                    "value": "webp"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "lineChart",
+                    "type": "div",
+                    "fields": [
+                        {
+                            "text": "Geral",
+                            "id": "geral",
+                            "type": "card",
+                            "att": "layout",
+                            "fields": [
+                                {
+                                    "type": "label",
+                                    "text": "Título"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "Nome",
+                                    "att": "title.text",
+                                    "id": "text",
+                                    "lg": "plotlyLineChart"
+                                },
+                                {
+                                    "type": "formRow",
+                                    "fields": [
+                                        {
+                                            "type": "select",
+                                            "text": "Tamanho",
+                                            "att": "title.font.size",
+                                            "id": "title_size",
+                                            "options": [
+                                                {
+                                                    "text": 16
+                                                },
+                                                {
+                                                    "text": 20
+                                                },
+                                                {
+                                                    "text": 24
+                                                },
+                                                {
+                                                    "text": 28
+                                                },
+                                                {
+                                                    "text": 32
+                                                },
+                                                {
+                                                    "text": 36
+                                                }
+                                            ],
+                                            "lg": "plotlyLineChart"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "checkbox",
+                                    "text": "Mostrar legenda",
+                                    "att": "showlegend",
+                                    "id": "showlegend",
+                                    "checked": true,
+                                    "lg": "plotlyLineChart"
+                                }
+                            ]
+                        },
+                        {
+                            "text": "Séries",
+                            "id": "series",
+                            "type": "card",
+                            "att": "data",
+                            "fields": [
+                                {
+                                    "type": "textWithButton",
+                                    "att" : "name",
+                                    "lg" : "PlotlyDataGroup",
+                                    "id": "serieName",
+                                    "text": {
+                                        "text": "Nome",
+                                        "buttonText": "Add"
+                                    }
+                                },
+                                {
+                                    "type": "selectAndLabel",
+                                    "att" : "x",
+                                    "text": "X",
+                                    "lg" : "PlotlyDataGroup"
+                                },
+                                {
+                                    "type": "selectAndLabel",
+                                    "att" : "y",
+                                    "text": "Y",
+                                    "lg" : "PlotlyDataGroup"
+                                },
+                                {
+                                    "type": "div",
+                                    "id": "plotly_linechart_series_list"
+                                }
+                            ]
+                        },
+                        {
+                            "text": "Estilo",
+                            "id": "style",
+                            "att": "data",
+                            "type": "card",
+                            "fields": [
+                                {
+                                    "type": "select",
+                                    "text": "Série",
+                                    "att": "currentSerieName",
+                                    "lg": "plotlyLineChart false",
+                                    "id": "plotly_selectedSerie"
+                                },
+                                {
+                                    "type": "checkbox",
+                                    "text": "Pontos",
+                                    "id": "showMarkers",
+                                    "att": "showmarkers",
+                                    "checked": false,
+                                    "lg": "plotlyLineChart"
+                                },
+                                {
+                                    "type": "div",
+                                    "id": "markersOptions",
+                                    "att": "marker",
+                                    "fields": [
+                                        {
+                                            "type": "formRow",
+                                            "fields": [
+                                                {
+                                                    "type": "select",
+                                                    "text": "Tamanho",
+                                                    "att": "size",
+                                                    "id": "marker_width",
+                                                    "options": [
+                                                        {
+                                                            "text": 4
+                                                        },
+                                                        {
+                                                            "text": 6
+                                                        },
+                                                        {
+                                                            "text": 8
+                                                        },
+                                                        {
+                                                            "text": 10
+                                                        },
+                                                        {
+                                                            "text": 12
+                                                        },
+                                                        {
+                                                            "text": 14
+                                                        }
+                                                    ],
+                                                    "lg": "plotlyLineChart"
+                                                },
+                                                {
+                                                    "type": "select",
+                                                    "text": "Cor",
+                                                    "att": "color",
+                                                    "id": "marker_color",
+                                                    "lg": "plotlyLineChart",
+                                                    "options": [
+                                                        {
+                                                            "text": "#1f77b4"
+                                                        },
+                                                        {
+                                                            "text": "#ff7f0e"
+                                                        },
+                                                        {
+                                                            "text": "#2ca02c"
+                                                        },
+                                                        {
+                                                            "text": "#d62728"
+                                                        },
+                                                        {
+                                                            "text": "#9467bd"
+                                                        },
+                                                        {
+                                                            "text": "#8c564b"
+                                                        },
+                                                        {
+                                                            "text": "#e377c2"
+                                                        },
+                                                        {
+                                                            "text": "#7f7f7f"
+                                                        },
+                                                        {
+                                                            "text": "#bcbd22"
+                                                        },
+                                                        {
+                                                            "text": "#17becf"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "conditions": [
+                                        {
+                                            "id": "showMarkers",
+                                            "att": "checked",
+                                            "requiredValue": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "checkbox",
+                                    "text": "Linha",
+                                    "att": "showlines",
+                                    "id": "showLines",
+                                    "checked": false,
+                                    "lg": "plotlyLineChart"
+                                },
+                                {
+                                    "type": "div",
+                                    "id": "linesOptions",
+                                    "att": "line",
+                                    "fields": [
+                                        {
+                                            "type": "formRow",
+                                            "fields": [
+                                                {
+                                                    "type": "select",
+                                                    "text": "Tamanho",
+                                                    "att": "width",
+                                                    "id": "line_width",
+                                                    "options": [
+                                                        {
+                                                            "text": 1
+                                                        },
+                                                        {
+                                                            "text": 2
+                                                        },
+                                                        {
+                                                            "text": 3
+                                                        },
+                                                        {
+                                                            "text": 4
+                                                        },
+                                                        {
+                                                            "text": 5
+                                                        },
+                                                        {
+                                                            "text": 6
+                                                        }
+                                                    ],
+                                                    "lg": "plotlyLineChart"
+                                                },
+                                                {
+                                                    "type": "select",
+                                                    "text": "Cor",
+                                                    "att": "color",
+                                                    "id": "line_color",
+                                                    "options": [
+                                                        {
+                                                            "text": "#1f77b4"
+                                                        },
+                                                        {
+                                                            "text": "#ff7f0e"
+                                                        },
+                                                        {
+                                                            "text": "#2ca02c"
+                                                        },
+                                                        {
+                                                            "text": "#d62728"
+                                                        },
+                                                        {
+                                                            "text": "#9467bd"
+                                                        },
+                                                        {
+                                                            "text": "#8c564b"
+                                                        },
+                                                        {
+                                                            "text": "#e377c2"
+                                                        },
+                                                        {
+                                                            "text": "#7f7f7f"
+                                                        },
+                                                        {
+                                                            "text": "#bcbd22"
+                                                        },
+                                                        {
+                                                            "text": "#17becf"
+                                                        }
+                                                    ],
+                                                    "lg": "plotlyLineChart"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "formRow",
+                                            "fields": [
+                                                {
+                                                    "type": "select",
+                                                    "text": "Tracejado",
+                                                    "att": "dash",
+                                                    "id": "line_dash",
+                                                    "options": [
+                                                        {
+                                                            "text": "Sólido",
+                                                            "value": "solid"
+                                                        },
+                                                        {
+                                                            "text": "Pontilhado",
+                                                            "value": "dot"
+                                                        },
+                                                        {
+                                                            "text": "Tracejado",
+                                                            "value": "dash"
+                                                        },
+                                                        {
+                                                            "text": "Travessão",
+                                                            "value": "longdash"
+                                                        },
+                                                        {
+                                                            "text": "Traço e ponto",
+                                                            "type": "dashdot"
+                                                        }
+                                                    ],
+                                                    "lg": "plotlyLineChart"
+                                                },
+                                                {
+                                                    "type": "select",
+                                                    "text": "Interpolação",
+                                                    "att": "shape",
+                                                    "id": "line_shape",
+                                                    "options": [
+                                                        {
+                                                            "text": "Linear",
+                                                            "value": "linear"
+                                                        },
+                                                        {
+                                                            "text": "Suave",
+                                                            "value": "spline"
+                                                        },
+                                                        {
+                                                            "text": "Degraus 1",
+                                                            "value": "hv"
+                                                        },
+                                                        {
+                                                            "text": "Degraus 2",
+                                                            "value": "vh"
+                                                        },
+                                                        {
+                                                            "text": "Degraus 3",
+                                                            "value": "hvh"
+                                                        },
+                                                        {
+                                                            "text": "Degraus 4",
+                                                            "value": "vhv"
+                                                        }
+                                                    ],
+                                                    "lg": "plotlyLineChart"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "conditions": [
+                                        {
+                                            "id": "showLines",
+                                            "att": "checked",
+                                            "requiredValue": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "text": "Eixos",
+                            "id": "axes",
+                            "att": "layout",
+                            "type": "card",
+                            "fields": [
+                                {
+                                    "type": "label",
+                                    "text": "Eixo x"
+                                },
+                                {
+                                    "type": "div",
+                                    "att": "xaxis",
+                                    "fields": [
+                                        {
+                                            "type": "text",
+                                            "text": "Título",
+                                            "att": "title.text",
+                                            "id": "xaxestext",
+                                            "lg": "plotlyLineChart"
+                                        },
+                                        {
+                                            "type": "formRow",
+                                            "fields": [
+                                                {
+                                                    "type": "select",
+                                                    "text": "Tamanho",
+                                                    "att": "title.font.size",
+                                                    "id": "xaxis_font_size",
+                                                    "options": [
+                                                        {
+                                                            "text": 10
+                                                        },
+                                                        {
+                                                            "text": 12
+                                                        },
+                                                        {
+                                                            "text": 14
+                                                        },
+                                                        {
+                                                            "text": 16
+                                                        },
+                                                        {
+                                                            "text": 18
+                                                        },
+                                                        {
+                                                            "text": 20
+                                                        }
+                                                    ],
+                                                    "lg": "plotlyLineChart"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "select",
+                                            "text": "Escala",
+                                            "att": "type",
+                                            "lg": "plotlyLineChart",
+                                            "options": [
+                                                {
+                                                    "text": "Linear",
+                                                    "value": "linear"
+                                                },
+                                                {
+                                                    "text": "Logaritimica",
+                                                    "value": "log"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "label",
+                                    "text": "Eixo y"
+                                },
+                                {
+                                    "type": "div",
+                                    "att": "yaxis",
+                                    "fields": [
+                                        {
+                                            "type": "text",
+                                            "text": "Título",
+                                            "att": "title.text",
+                                            "id": "xaxestext",
+                                            "lg": "plotlyLineChart"
+                                        },
+                                        {
+                                            "type": "formRow",
+                                            "fields": [
+                                                {
+                                                    "type": "select",
+                                                    "text": "Tamanho",
+                                                    "att": "title.font.size",
+                                                    "id": "yaxis_font_size",
+                                                    "options": [
+                                                        {
+                                                            "text": 10
+                                                        },
+                                                        {
+                                                            "text": 12
+                                                        },
+                                                        {
+                                                            "text": 14
+                                                        },
+                                                        {
+                                                            "text": 16
+                                                        },
+                                                        {
+                                                            "text": 18
+                                                        },
+                                                        {
+                                                            "text": 20
+                                                        }
+                                                    ],
+                                                    "lg": "plotlyLineChart"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "select",
+                                            "text": "Escala",
+                                            "att": "type",
+                                            "lg": "plotlyLineChart",
+                                            "options": [
+                                                {
+                                                    "text": "Linear",
+                                                    "value": "linear"
+                                                },
+                                                {
+                                                    "text": "Logaritimica",
+                                                    "value": "log"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "id": "plotSelector",
+                            "att": "value",
+                            "requiredValue": "lineChart"
+                        }
+                    ]
+                },
+                {
+                    "id": "indicator",
+                    "type": "div",
+                    "fields": [
+                        {
+                            "text": "Gauge",
+                            "type": "card",
+                            "id": "gauge",
+                            "fields": [
+                                {
+                                    "type": "checkbox",
+                                    "text": "Gauge",
+                                    "id": "showGauge",
+                                    "checked": true
+                                },
+                                {
+                                    "type": "div",
+                                    "id": "gaugeOptions",
+                                    "fields": [
+                                        {
+                                            "type": "select",
+                                            "text": "Formato",
+                                            "id": "shape",
+                                            "options": [
+                                                {
+                                                    "text": "Linear",
+                                                    "value": "bullet"
+                                                },
+                                                {
+                                                    "text": "Curvo",
+                                                    "value": "angular"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "checkbox",
+                                            "text": "Graduação",
+                                            "id": "axisGraduation",
+                                            "checked": true
+                                        },
+                                        {
+                                            "type": "formRow",
+                                            "fields": [
+                                                {
+                                                    "type": "text",
+                                                    "text": "Minímo",
+                                                    "id": "minGraduation"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "Máximo",
+                                                    "id": "maxGraduation"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "text": "Número",
+                            "type": "card",
+                            "id": "number",
+                            "fields": [
+                                {
+                                    "type": "select",
+                                    "text": "Valor",
+                                    "id": "value"
+                                },
+                                {
+                                    "type": "checkbox",
+                                    "text": "Mostrar valor",
+                                    "id": "showNumber",
+                                    "checked": true
+                                },
+                                {
+                                    "type": "div",
+                                    "id": "numberOptions",
+                                    "fields": [
+                                        {
+                                            "type": "formRow",
+                                            "fields": [
+                                                {
+                                                    "type": "text",
+                                                    "text": "Prefixo",
+                                                    "id": "sufix"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "Sufixo",
+                                                    "id": "prefix"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "text": "Delta",
+                            "id": "delta",
+                            "type": "card",
+                            "fields": [
+                                {
+                                    "type": "checkbox",
+                                    "text": "Delta",
+                                    "id": "showDelta",
+                                    "checked": true
+                                },
+                                {
+                                    "type": "div",
+                                    "id": "deltaOptions",
+                                    "fields": [
+                                        {
+                                            "type": "select",
+                                            "text": "Valor de referencia",
+                                            "id": "reference"
+                                        },
+                                        {
+                                            "type": "formRow",
+                                            "fields": [
+                                                {
+                                                    "type": "select",
+                                                    "text": "Valor mostrado",
+                                                    "id": "relative",
+                                                    "options": [
+                                                        {
+                                                            "text": "Real",
+                                                            "value": false
+                                                        },
+                                                        {
+                                                            "text": "Relativo",
+                                                            "value": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "select",
+                                                    "text": "Posição",
+                                                    "id": "relative",
+                                                    "options": [
+                                                        {
+                                                            "text": "Topo",
+                                                            "value": "top"
+                                                        },
+                                                        {
+                                                            "text": "Direita",
+                                                            "value": "right"
+                                                        },
+                                                        {
+                                                            "text": "Esquerda",
+                                                            "value": "left"
+                                                        },
+                                                        {
+                                                            "text": "Embaixo",
+                                                            "value": "bottom"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "id": "plotSelector",
+                            "att": "value",
+                            "requiredValue": "indicator"
+                        }
+                    ]
+                }
+            ],
+            "conditions": [
+                {
+                    "id": "packageSelector",
+                    "att": "value",
+                    "requiredValue": 1
+                }
+            ]
+        }
+    ]
+}
