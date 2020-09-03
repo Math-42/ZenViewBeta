@@ -131,33 +131,21 @@ class MainWindow {
 
         if (answer === true) {
 
-            let serializedData = [];
-
             this.currentDashBoard.gridStack.engine.nodes.forEach((node) => {
-                serializedData.push({
-                    id: node.id,
-                    x: node.x,
-                    y: node.y,
-                    width: node.width,
-                    height: node.height
-                });
-            });
-
-            serializedData.forEach(widget => {
                 for (let i = 0; i < this.currentDashBoard.blocks.length; i++) {
-                    if (this.currentDashBoard.blocks[i].id == widget.id) {
-                        this.currentDashBoard.blocks[i].id = widget.id,
-                        this.currentDashBoard.blocks[i].x = widget.x,
-                        this.currentDashBoard.blocks[i].y = widget.y,
-                        this.currentDashBoard.blocks[i].width = widget.width,
-                        this.currentDashBoard.blocks[i].height = widget.height;
+                    if (this.currentDashBoard.blocks[i].id == node.id) {
+                        this.currentDashBoard.blocks[i].id = node.id,
+                        this.currentDashBoard.blocks[i].x = node.x,
+                        this.currentDashBoard.blocks[i].y = node.y,
+                        this.currentDashBoard.blocks[i].width = node.width,
+                        this.currentDashBoard.blocks[i].height = node.height;
                     }
                 }
             });
 
-
             let name = this.currentDashBoard.name;
             this.currentDashBoard.gridStack = {};
+            this.currentDashBoard.ids = this.currentDashBoard.blocks.length;
 
 
             fs.writeFileSync(`dashBoards/${name}/${name}.json`, JSON.stringify(this.currentDashBoard, null, "\t"));
