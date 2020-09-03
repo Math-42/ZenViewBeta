@@ -31,13 +31,24 @@ module.exports = class LineChartMenu {
                 text: input.name
             };
         });
+        
+        this.attSerieSelector();
+
+        this.menu.getFieldElement("serieName").value = "";
 
         this.plot.data.forEach(serie => {
             this.addSerieList(serie);
         });
 
-        this.attSeries();
+        this.attSeriesList();
         this.menu.setData(junk);
+    }
+    attSerieSelector(){
+        this.menu.setOptions("plotly.data.currentSerieName", this.plot.data, (serie) => {
+            return {
+                text: serie.name
+            };
+        });
     }
     attSeries() {
         let currentSerieName = this.menu.getField("plotly.data.currentSerieName");
@@ -102,15 +113,21 @@ module.exports = class LineChartMenu {
         });
 
         this.colorCount = (this.colorCount + 1) % this.colors.length;
-        this.addSerieList(data);
+        this.attSerieSelector();
+        this.attSeriesList();
         this.attSeries();
+    }
+    attSeriesList(){
+        document.getElementById("plotly_linechart_series_list").innerHTML = "";
+        this.plot.data.forEach(serie => {
+            this.addSerieList(serie);
+        });
     }
     addSerieList(data) {
         let newOption = document.createElement("option");
         newOption.textContent = data.name;
         newOption.value = data.name;
-        document.getElementById("plotly_selectedSerie").appendChild(newOption);
-        document.getElementById("plotly_linechart_series_list").value = "";
+        
         let newSerie = document.createElement("div");
         newSerie.className = " input-group mb-1";
         newSerie.id = `Plotly_serie_${data.name}`;
@@ -124,6 +141,7 @@ module.exports = class LineChartMenu {
         document.getElementById(`Plotly_rmv_${data.name}`).onclick = () => {
             document.getElementById(`Plotly_serie_${data.name}`).remove();
             this.plot.removeSerie(`${data.name}`);
+            this.attSerieSelector();
         };
     }
     setEvents() {
@@ -133,6 +151,7 @@ module.exports = class LineChartMenu {
         this.menu.onFieldChange("serieName_button", () => {
             let info = this.menu.getGroup("PlotlyDataGroup");
             this.addSerie(info.plotly.data);
+            this.menu.getFieldElement("serieName").value = "";
         });
         this.menu.onFieldChange("plotly.data.currentSerieName", () => {
             this.attSeries();
