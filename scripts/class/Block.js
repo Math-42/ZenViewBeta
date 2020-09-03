@@ -1,6 +1,6 @@
-const ElementResize = require('javascript-detect-element-resize');
-const LineChartPlotlyBlock = require('./blocks/lineChartPlotlyBlock');
-const IndicatorPlotlyBlock = require('./blocks/indicatorPlotlyBlock');
+const ElementResize = require("javascript-detect-element-resize");
+const LineChartPlotlyBlock = require("./blocks/lineChartPlotlyBlock");
+const IndicatorPlotlyBlock = require("./blocks/indicatorPlotlyBlock");
 module.exports = class Block {
     constructor(id, type) {
         this.plotLib = type;
@@ -19,17 +19,17 @@ module.exports = class Block {
                 indicator: undefined
             },
             Threejs: undefined
-        }
+        };
         this.setPlotType(type);
     }
     setPlotType(type) {
         if (type.main === "Plotly") {
             if (type.sub === "lineChart") {
                 this.plots.Plotly.lineChart = (this.plots.Plotly.lineChart === undefined) ? new LineChartPlotlyBlock(this.id) : this.plots.Plotly.lineChart;
-                this.currentPlot = this.plots.Plotly.lineChart
+                this.currentPlot = this.plots.Plotly.lineChart;
             } else if (type.sub === "indicator") {
                 this.plots.Plotly.indicator = (this.plots.Plotly.indicator === undefined) ? new IndicatorPlotlyBlock(this.id) : this.plots.Plotly.indicator;
-                this.currentPlot = this.plots.Plotly.indicator
+                this.currentPlot = this.plots.Plotly.indicator;
             }
         }
         this.type = type;
@@ -40,7 +40,6 @@ module.exports = class Block {
         this.x = BlockJson.x;
         this.y = BlockJson.y;
         this.plotLib = BlockJson.plotLib;
-        this.id = BlockJson.id
         this.setPlotType(BlockJson.type);
         this.currentPlot.loadFromJson(BlockJson.currentPlot);
     }
@@ -50,7 +49,7 @@ module.exports = class Block {
         this.currentPlot.init(this.editing);
         if (this.editing) {
             document.getElementById(this.id).ondblclick = () => {
-                mainwindow.dispatchEvent('openEditingMenu', {
+                mainwindow.dispatchEvent("openEditingMenu", {
                     "block": this
                 });
             };
@@ -62,7 +61,7 @@ module.exports = class Block {
         this.currentPlot.load(this.editing);
         if (this.editing) {
             document.getElementById(this.id).ondblclick = () => {
-                mainwindow.dispatchEvent('openEditingMenu', {
+                mainwindow.dispatchEvent("openEditingMenu", {
                     "block": this
                 });
             };
@@ -75,4 +74,4 @@ module.exports = class Block {
         newWidget.appendChild(this.currentPlot.htmlComponent());
         return newWidget;
     }
-}
+};
