@@ -27,9 +27,10 @@ module.exports = class DashBoard {
         let tempBlocks = dashBoardJson.blocks;
 
         tempBlocks.forEach(block => {
-            let tempBlock = new Block(this.ids++, block.plotLib);
+            let tempBlock = new Block(this.ids, block.plotLib);
             tempBlock.loadFromJson(block);
             this.blocks.push(tempBlock);
+            this.ids ++;
         });
 
         let inputs = [];
