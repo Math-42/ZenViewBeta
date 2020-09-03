@@ -173,11 +173,11 @@ class MainWindow {
         se atraves de eventos
     */
     loadEvents() {
-        window.addEventListener("ChangeSideMenu", (evt) => {
+        window.addEventListener("ChangeSideMenu", () => {
             console.log("Menu lateral foi alterado");
             this.sideMenu.changeSideMenu();
         });
-        window.addEventListener("ClosePopupMenu", (evt) => {
+        window.addEventListener("ClosePopupMenu", () => {
             console.log("Menu popup foi fechado");
             this.popUpMenu.closePopup();
         });
@@ -193,11 +193,11 @@ class MainWindow {
             console.log("Contexto da aba foi alterado");
             this.contextChangeStyle(evt.detail.context);
         });
-        window.addEventListener("saveDashBoard", (evt) => {
+        window.addEventListener("saveDashBoard", () => {
             console.log("Salvando DashBoard");
             this.saveCurrentDashBoard();
         });
-        window.addEventListener("deleteDashBoard", (evt) => {
+        window.addEventListener("deleteDashBoard", () => {
             console.log("Deletando DashBoard");
             this.deleteCurrentDashBoard();
         });
