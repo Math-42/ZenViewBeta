@@ -16,7 +16,6 @@ module.exports = class DashBoard {
         this.gridStack;
         this.activeContext;
         this.ids = 1;
-
     }
     loadFromJson(dashBoardJson) {
         this.name = dashBoardJson.name;
@@ -41,6 +40,7 @@ module.exports = class DashBoard {
 
         this.inputs = inputs;
     }
+
     init() {
 
         this.gridStack = GridStack.init({
@@ -62,10 +62,13 @@ module.exports = class DashBoard {
             this.gridStack.addWidget(block.plotHtmlComponent(), block);
             block.load(this.editing);
         });
+
     }
+
     clear() {
         this.gridStack.removeAll();
     }
+
     removeWidget(block) {
         let widget = document.getElementById(block.id);
         this.gridStack.removeWidget(widget);
@@ -76,6 +79,7 @@ module.exports = class DashBoard {
             }
         }
     }
+    
     addNewWidget(newBlock) {
         newBlock = (newBlock === undefined) ? new Block(this.ids++, {
             main: "Plotly",
