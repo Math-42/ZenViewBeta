@@ -238,6 +238,11 @@
     border-color: rgb(250, 65, 59);
 }
 
+.standard_input_border{
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
 /*
     Estilo do menu de inserção dos plots
 */
