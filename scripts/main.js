@@ -7,7 +7,7 @@ const path = require("path");
 const url = require("url");
 const ipc = electron.ipcMain;
 
-const debugMode = true;
+const debugMode = false;
 let initialWindow;
 let mainWindow;
 
@@ -24,7 +24,7 @@ let initialWindowparams = {
 };
 //parametros inicias da janela principal
 let mainWindowparams = {
-    title: "ZenView",
+    
     path: "../interface/mainWindow/mainWindow.html",
     show: debugMode,
     webPreferences: {

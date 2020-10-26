@@ -77,25 +77,25 @@ class MenuBuilder {
     basicInput() {
         let component;
         switch (this.type) {
-        case "text":
-            component = document.createElement("input");
-            component.type = "text";
-            break;
-        case "checkbox":
-            component = document.createElement("input");
-            component.type = "checkbox";
-            break;
-        case "select":
-            component = document.createElement("select");
-            break;
-        case "textAndButton":
-            component = document.createElement("");
-            break;
-        case "selectAndLabel":
-            component = document.createElement("");
-            break;
-        default:
-            break;
+            case "text":
+                component = document.createElement("input");
+                component.type = "text";
+                break;
+            case "checkbox":
+                component = document.createElement("input");
+                component.type = "checkbox";
+                break;
+            case "select":
+                component = document.createElement("select");
+                break;
+            case "textAndButton":
+                component = document.createElement("");
+                break;
+            case "selectAndLabel":
+                component = document.createElement("");
+                break;
+            default:
+                break;
         }
         component.setAttribute("listening-group", this.lg || "default");
         if (this.att !== undefined) component.setAttribute("att", this.att);
@@ -320,35 +320,35 @@ class MenuBuilder {
     }
     build() {
         switch (this.type) {
-        case "text":
-            this.htmlComponent = (this.textInputBuilder());
-            break;
-        case "checkbox":
-            this.htmlComponent = (this.checkBoxBuilder());
-            break;
-        case "select":
-            this.htmlComponent = (this.selectionBuilder());
-            break;
-        case "div":
-            this.htmlComponent = (this.divBuilder());
-            break;
-        case "label":
-            this.htmlComponent = (this.labelBuilder());
-            break;
-        case "formRow":
-            this.htmlComponent = (this.formRowBuilder());
-            break;
-        case "card":
-            this.htmlComponent = (this.cardBuilder());
-            break;
-        case "textWithButton":
-            this.htmlComponent = (this.textAndButtonBuilder());
-            break;
-        case "selectAndLabel":
-            this.htmlComponent = (this.selectAndLabelBuilder());
-            break;
-        default:
-            throw "Invalid type of field: " + this.type;
+            case "text":
+                this.htmlComponent = (this.textInputBuilder());
+                break;
+            case "checkbox":
+                this.htmlComponent = (this.checkBoxBuilder());
+                break;
+            case "select":
+                this.htmlComponent = (this.selectionBuilder());
+                break;
+            case "div":
+                this.htmlComponent = (this.divBuilder());
+                break;
+            case "label":
+                this.htmlComponent = (this.labelBuilder());
+                break;
+            case "formRow":
+                this.htmlComponent = (this.formRowBuilder());
+                break;
+            case "card":
+                this.htmlComponent = (this.cardBuilder());
+                break;
+            case "textWithButton":
+                this.htmlComponent = (this.textAndButtonBuilder());
+                break;
+            case "selectAndLabel":
+                this.htmlComponent = (this.selectAndLabelBuilder());
+                break;
+            default:
+                throw "Invalid type of field: " + this.type;
         }
     }
 }
@@ -385,20 +385,20 @@ module.exports = class Menu {
         let event;
         try {
             switch (element.tagName) {
-            case "BUTTON":
-                event = "click";
-                break;
+                case "BUTTON":
+                    event = "click";
+                    break;
 
-            case "INPUT":
-                event = "change";
-                break;
+                case "INPUT":
+                    event = "change";
+                    break;
 
-            case "SELECT":
-                event = "change";
-                break;
+                case "SELECT":
+                    event = "change";
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
             }
         } catch (error) {
             throw ("Did't find the requested field: " + fieldIdentification);
@@ -453,7 +453,7 @@ module.exports = class Menu {
         return this.getData(this.form.elements, groupName);
     }
     getField(fieldIdentification) {
-        let  element;
+        let element;
         let attResult = this.getElementByAtt(fieldIdentification);
         let idResult = document.getElementById(fieldIdentification);
 
@@ -470,7 +470,7 @@ module.exports = class Menu {
         }
     }
     getFieldElement(fieldIdentification) {
-        let  element;
+        let element;
         let attResult = this.getElementByAtt(fieldIdentification);
         let idResult = document.getElementById(fieldIdentification);
 
